@@ -1,0 +1,35 @@
+<%- include('../partials/navbar') %>
+
+<link rel="stylesheet" href="/css/auth.css">
+
+<section class="auth-container signup-page">
+
+    <div class="signup-right">
+        <h1>Sign <span>up</span></h1>
+
+        <form action="/signup" method="POST" class="auth-form">
+
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Enter full name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email" required>
+
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Your username..." required>
+
+            <% if (typeof errorMessage !== 'undefined') { %>
+              <p class="error"><%= errorMessage %></p>
+            <% } %>
+
+            <button class="auth-btn">Sign up</button>
+        </form>
+    </div>
+
+    <div class="signup-left">
+        <h2>Welcome <span>back!</span></h2>
+        <p>Already have an account? Sign in here!</p>
+        <a href="/login" class="mini-btn">Sign in</a>
+    </div>
+
+</section>

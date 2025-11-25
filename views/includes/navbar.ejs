@@ -1,0 +1,29 @@
+<header class="main-header">
+  <div class="container nav-container">
+    <div class="logo">
+      <a href="/">
+        Zahle<span>Uncovered</span>
+      </a>
+    </div>
+
+    <nav class="main-nav">
+      <a href="/" class="<%= pageTitle === 'Home' ? 'active' : '' %>">Home</a>
+      <a href="/about" class="<%= pageTitle === 'About' ? 'active' : '' %>">About</a>
+      <a href="/explore" class="<%= pageTitle === 'Explore' ? 'active' : '' %>">Explore</a>
+      <a href="/planner" class="<%= pageTitle === 'Planner' ? 'active' : '' %>">Planner</a>
+      <a href="/contact" class="<%= pageTitle === 'Contact' ? 'active' : '' %>">Contact</a>
+    </nav>
+
+    <div class="nav-icons">
+      <button class="icon-btn" aria-label="Search">
+        🔍
+      </button>
+      <button class="icon-btn" aria-label="Menu">
+        ☰
+      </button>
+      <button class="icon-btn" aria-label="Account">
+        👤
+      </button>
+    </div>
+  </div>
+</header>

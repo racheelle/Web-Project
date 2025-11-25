@@ -1,0 +1,30 @@
+<%- include('../partials/navbar') %>
+
+<link rel="stylesheet" href="/css/auth.css">
+
+<section class="auth-container login-page">
+
+    <div class="login-left">
+        <h1><span>Welcome</span> back!</h1>
+        <p>Enter your account information to sign in</p>
+
+        <form action="/login" method="POST" class="auth-form">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email" required>
+
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Your username..." required>
+
+            <% if (typeof errorMessage !== 'undefined') { %>
+              <p class="error"><%= errorMessage %></p>
+            <% } %>
+
+            <button class="auth-btn">Sign in</button>
+        </form>
+    </div>
+
+    <div class="bg-circle circle1"></div>
+    <div class="bg-circle circle2"></div>
+    <div class="bg-circle circle3"></div>
+
+</section>
