@@ -12,7 +12,6 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 
-
 dotenv.config();
 
 const app = express();
@@ -32,9 +31,9 @@ app.use(express.json());
 // Session
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: "mySuperSecretKey123",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
   })
 );
 
@@ -53,14 +52,11 @@ app.use("/reviews", reviewRoutes);
 app.use("/newsletter", newsletterRoutes);
 app.use("/contact", contactRoutes);
 
-
 // 404
 app.use((req, res) => {
   res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running → http://localhost:${PORT}`);
-});
+app.listen(8000, "localhost", () =>
+  console.log(`Server running on http://localhost:8000`)
+);
