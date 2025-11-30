@@ -21,15 +21,18 @@
           <span class="value">Restaurants ▾</span>
         </div>
         <div class="divider"></div>
+
         <div class="search-item">
           <span class="label">Date</span>
           <span class="value">26 Mar, Fri ▾</span>
         </div>
         <div class="divider"></div>
+
         <div class="search-item">
           <span class="label">Price</span>
           <span class="value">100$ ▾</span>
         </div>
+
         <button class="search-btn">🔍</button>
       </div>
     </div>
@@ -43,8 +46,10 @@
     </div>
   </section>
 
+
   <!-- HIGHLIGHTS SECTION -->
   <section class="section highlights container">
+
     <div class="highlights-left">
       <div class="image-card">
         <img src="/images/zahle-car.jpg" alt="Zahle street" />
@@ -52,35 +57,25 @@
         <div class="plan-tag">Plan your Own Tour</div>
       </div>
     </div>
+
     <div class="highlights-right">
       <p class="section-eyebrow">Discover the Charm of Zahle</p>
       <h2>Highlights of the City</h2>
 
-      <div class="highlight-item">
-        <div class="icon-round">🏺</div>
-        <div>
-          <h3>Taste and Tradition</h3>
-          <p>Savor Zahle's renowned wineries and authentic Lebanese cuisine that celebrate centuries of culinary heritage.</p>
+      <% highlights.forEach(h => { %>
+        <div class="highlight-item">
+          <div class="icon-round"><%= h.icon %></div>
+          <div>
+            <h3><%= h.title %></h3>
+            <p><%= h.description %></p>
+          </div>
         </div>
-      </div>
+      <% }) %>
 
-      <div class="highlight-item">
-        <div class="icon-round">📜</div>
-        <div>
-          <h3>History and Culture</h3>
-          <p>Discover charming old churches, riverside promenades, and landmarks that tell the story of the Bekaa’s vibrant past.</p>
-        </div>
-      </div>
-
-      <div class="highlight-item">
-        <div class="icon-round">🌄</div>
-        <div>
-          <h3>Scenic Escapes</h3>
-          <p>Enjoy breathtaking mountain views, lush vineyards, and peaceful riverside spots perfect for a relaxing getaway.</p>
-        </div>
-      </div>
     </div>
   </section>
+
+
 
   <!-- EXPLORE BY CATEGORY / CARDS -->
   <section class="section explore-category container">
@@ -91,47 +86,35 @@
       <button class="carousel-arrow left">❮</button>
 
       <div class="cards-track">
-        <article class="place-card">
-          <img src="/images/place-1.jpg" alt="Place 1" />
-          <div class="place-content">
-            <div class="place-rating">⭐ 4.0 (23)</div>
-            <h3>Thinkers C.C.C.</h3>
-            <p class="price">USD 8$ /- Per person</p>
-            <div class="place-meta">
-              <span>🕒 7 Day's</span>
-              <span>👥 3+</span>
-              <span>📍 Boulevard</span>
-            </div>
-          </div>
-        </article>
 
-        <article class="place-card">
-          <img src="/images/place-2.jpg" alt="Place 2" />
-          <div class="place-content">
-            <div class="place-rating">⭐ 4.5 (32)</div>
-            <h3>Our Lady of Joy</h3>
-            <p class="price">Free /- Per person</p>
-            <div class="place-meta">
-              <span>🕒 6 Day's</span>
-              <span>👥 3+</span>
-              <span>📍 Dhour</span>
-            </div>
-          </div>
-        </article>
+        <% if (popularPlaces.length === 0) { %>
+          <p>No places added yet.</p>
+        <% } %>
 
-        <article class="place-card">
-          <img src="/images/place-3.jpg" alt="Place 3" />
-          <div class="place-content">
-            <div class="place-rating">⭐ 4.7 (42)</div>
-            <h3>Mr. Almond</h3>
-            <p class="price">USD 20$ /- Per person</p>
-            <div class="place-meta">
-              <span>🕒 4 Day's</span>
-              <span>👥 18+</span>
-              <span>📍 Harkat</span>
+        <% popularPlaces.forEach(place => { %>
+          <article class="place-card">
+            <img src="<%= place.main_image %>" alt="<%= place.name %>" />
+
+            <div class="place-content">
+
+              <div class="place-rating">⭐ <%= place.rating %></div>
+
+              <h3><%= place.name %></h3>
+
+              <% if (place.price_min === 0) { %>
+                <p class="price">Free /- Per person</p>
+              <% } else { %>
+                <p class="price">USD <%= place.price_min %>$ - <%= place.price_max %>$</p>
+              <% } %>
+
+              <div class="place-meta">
+                <span>📍 <%= place.location %></span>
+              </div>
+
             </div>
-          </div>
-        </article>
+          </article>
+        <% }) %>
+
       </div>
 
       <button class="carousel-arrow right">❯</button>
@@ -144,9 +127,12 @@
     </div>
   </section>
 
+
+
   <!-- ABOUT ZAHLE SECTION -->
   <section class="section about-zahle">
     <div class="container about-grid">
+
       <div class="about-text">
         <p class="section-eyebrow">About Zahle</p>
         <h2>The City of Wine and Culture</h2>
@@ -154,6 +140,7 @@
           Zahle is more than a destination—it’s an experience. Wander through its wineries, taste its famous cuisine,
           and step into a heritage shaped by centuries of tradition. Your journey starts here.
         </p>
+
         <button class="btn-primary">Start Exploring</button>
 
         <div class="about-stats">
@@ -174,6 +161,7 @@
 
       <div class="about-image-wrapper">
         <div class="about-shape"></div>
+
         <div class="about-card">
           <img src="/images/wine-cellar.jpg" alt="Wine cellar" />
           <div class="about-caption">
@@ -181,8 +169,11 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
+
+
 
   <!-- REVIEWS SECTION -->
   <section class="section reviews container">
@@ -190,24 +181,35 @@
     <h2>Reviews from Visitors</h2>
 
     <div class="reviews-grid">
+
       <div class="review-image-card">
         <img src="/images/review-hero.jpg" alt="Visitor in Zahle" />
       </div>
-      <div class="review-content-card">
-        <h3>Jane Doe</h3>
-        <p class="review-location">From USA, Colorado</p>
-        <p>
-          Zahle truly stole my heart! From the charming old streets to the breathtaking Bekaa Valley views,
-          every moment felt magical. The wineries were incredible, the food unforgettable, and the people so welcoming.
-          I can’t wait to return and explore even more hidden gems.
-        </p>
-        <div class="review-arrows">
-          <button>❮</button>
-          <button>❯</button>
+
+      <% if (reviews.length > 0) { %>
+        <% let r = reviews[0]; %>
+
+        <div class="review-content-card">
+          <h3><%= r.userName %></h3>
+          <p class="review-location">From <%= r.country %></p>
+          <p><%= r.comment %></p>
+
+          <div class="review-arrows">
+            <button>❮</button>
+            <button>❯</button>
+          </div>
         </div>
-      </div>
+
+      <% } else { %>
+        <div class="review-content-card">
+          <p>No reviews yet.</p>
+        </div>
+      <% } %>
+
     </div>
   </section>
+
+
 
   <!-- NEWSLETTER SECTION -->
   <section class="section newsletter">
@@ -232,6 +234,7 @@
       </form>
     </div>
   </section>
+
 
 </main>
 
