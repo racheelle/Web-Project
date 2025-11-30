@@ -1,9 +1,12 @@
 import express from "express";
 import session from "express-session";
+import MySQLStore from "express-mysql-session"; //npm install express-mysql-session
 import path from "path";
-import dotenv from "dotenv";
+// i'll ignore the import dotenv from "dotenv";
 
-// Routes
+import rootDir from "./utils/path.js";
+import db from "./utils/database.js";
+
 import mainRoutes from "./routes/mainRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import plannerRoutes from "./routes/plannerRoutes.js";
@@ -12,38 +15,34 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 
-dotenv.config();
-
 const app = express();
-const __dirname = path.resolve();
 
-// EJS setup
+const MySQLSessionStore = MySQLStore(session);
+const sessionStore = new MySQLSessionStore({}, db);
+
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(rootDir, "views"));
 
-// Static files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(rootDir, "public")));
 
-// Body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Session
 app.use(
   session({
-    secret: "mySuperSecretKey123", //secret value
+    secret: "mySuperSecretKey123",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    store: sessionStore,
   })
 );
 
-// Make session user available in EJS
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
+  res.locals.isAuthenticated = !!req.session.user;
   next();
 });
 
-// Routes
 app.use("/", mainRoutes);
 app.use("/", authRoutes);
 app.use("/planner", plannerRoutes);
@@ -52,11 +51,10 @@ app.use("/reviews", reviewRoutes);
 app.use("/newsletter", newsletterRoutes);
 app.use("/contact", contactRoutes);
 
-// 404
 app.use((req, res) => {
   res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
 
 app.listen(8000, "localhost", () =>
-  console.log(`Server running on http://localhost:8000`)
+  console.log("Server running on http://localhost:8000")
 );
