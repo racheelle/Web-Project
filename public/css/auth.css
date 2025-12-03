@@ -1,256 +1,201 @@
-/* =========================================================
-   GLOBAL CONTAINER
-   ========================================================= */
-.auth-container {
+/* ================================
+   GLOBAL WRAPPER - PERFECT ALIGNMENT
+================================ */
+.signup-wrapper {
   width: 100%;
   min-height: 100vh;
-  padding: 60px 80px;
+
+  display: grid;
+  grid-template-columns: 430px 430px; /* smaller, equal columns */
+  justify-content: center;           /* center both columns together */
+  align-items: start;
+
+  column-gap: 140px;                 /* spacing between left and right */
+
+  padding: 120px 0 80px;             /* perfectly balanced top spacing */
+
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-  overflow: hidden;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  background: white;
 }
 
-/* Keeps form ABOVE the circles */
-.auth-container > * {
-  position: relative;
-  z-index: 5;
-}
-
-/* =========================================================
-   BACKGROUND CIRCLES (BEHIND CONTENT)
-   ========================================================= */
-.bg-circle {
+/* ================================
+   BACKGROUND WAVE LEFT
+================================ */
+.signup-bg {
   position: absolute;
-  border-radius: 50%;
-  background: #f1f1f1;
-  opacity: 0.35;
-  z-index: 1 !important;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  background: #e8e8e8;
+  z-index: 1;
+  clip-path: path(
+    "M0,0 
+     C400,200 300,450 700,550 
+     C1100,650 700,900 300,700 
+     L0,900 
+     Z"
+  );
 }
 
-.circle1 {
-  width: 900px;
-  height: 900px;
-  top: -260px;
-  left: -250px;
-}
-
-.circle2 {
-  width: 350px;
-  height: 350px;
-  bottom: 50px;
-  right: 150px;
-}
-
-.circle3 {
-  width: 250px;
-  height: 250px;
-  bottom: -30px;
-  left: 120px;
-}
-
-/* =========================================================
-   TYPOGRAPHY
-   ========================================================= */
-.auth-title {
-  font-size: 58px;
-  font-weight: 700;
-  color: #1b1c1e;
-  line-height: 1.1;
-}
-
-.auth-title span {
-  color: #FFA03F;
-  text-decoration: underline;
-  text-decoration-color: #FFA03F;
-}
-
-.auth-subtitle {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #5c5c5c;
-}
-
-/* =========================================================
-   LAYOUT PANELS
-   ========================================================= */
-.login-left,
-.signup-right {
-  width: 45%;
-}
-
-.signup-left,
-.login-right {
-  width: 40%;
-}
-
-/* Ensures text block stays above circles */
-.login-left,
-.signup-left,
-.signup-right {
+.signup-wrapper > * {
   position: relative;
   z-index: 10;
 }
 
-/* =========================================================
-   FORM STYLING
-   ========================================================= */
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  margin-top: 30px;
+/* ================================
+   LEFT SIDE
+================================ */
+.signup-left {
+  text-align: left;
 }
 
-.auth-form label {
-  font-weight: 600;
-  margin-top: 22px;
-  margin-bottom: 6px;
-  font-size: 15px;
+.left-title {
+  font-size: 54px;       /* smaller to match Figma */
+  font-weight: 700;
+  color: #1b1c1e;
+  line-height: 1.08;
+  margin-bottom: 14px;
 }
 
-.auth-form input {
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 15px;
-  background: white;
-  transition: 0.2s ease;
-  position: relative;
-  z-index: 15;
+.left-title span {
+  color: #FFA03F;
 }
 
-.auth-form input:focus {
-  border-color: #FFA03F;
-  box-shadow: 0 0 0 3px rgba(255,160,63,0.25);
-  outline: none;
+.left-subtitle {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 26px;
 }
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-.auth-btn {
-  margin-top: 30px;
-  padding: 14px 22px;
+.left-btn {
+  display: block;
+  margin-top: 10px;
+  width: 140px;
+  text-align: center;
+  padding: 12px 0;
   background: #FFA03F;
   color: #fff;
-  border: none;
   border-radius: 10px;
-  cursor: pointer;
-  font-size: 17px;
   font-weight: 600;
-  box-shadow: 0 5px 20px rgba(255,160,63,0.4);
-  position: relative;
-  z-index: 20;
-  transition: 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 5px 16px rgba(255,160,63,.35);
 }
 
-.auth-btn:hover {
+.left-btn:hover {
+  background: #ff8e1a;
+}
+
+/* ================================
+   RIGHT SIDE
+================================ */
+.signup-right {
+  text-align: left;
+}
+
+.right-title {
+  font-size: 54px;     /* match left side size */
+  font-weight: 700;
+  color: #1b1c1e;
+  margin-bottom: 22px;
+  line-height: 1.08;
+}
+
+.right-title span {
+  color: #FFA03F;
+  position: relative;
+}
+
+.right-title span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 4px;
+  background: #FFA03F;
+  border-radius: 4px;
+}
+
+/* ================================
+   FORM
+================================ */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;              /* inputs closer */
+  margin-top: 6px;
+}
+
+.signup-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.signup-form input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 15px;
+}
+
+.signup-form input:focus {
+  outline: none;
+  border-color: #FFA03F;
+  box-shadow: 0 0 0 3px rgba(255,160,63,.25);
+}
+
+/* BUTTON */
+.signup-btn {
+  margin-top: 18px;
+  padding: 14px;
+  background: #FFA03F;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 5px 20px rgba(255,160,63,.40);
+}
+
+.signup-btn:hover {
   background: #ff8d20;
   transform: translateY(-2px);
 }
 
-.mini-btn {
-  padding: 10px 20px;
-  background: #FFA03F;
-  color: #fff;
-  border-radius: 10px;
-  text-decoration: none;
-  margin-top: 25px;
-  display: inline-block;
-  font-weight: 500;
-  position: relative;
-  z-index: 20;
-}
-
-/* =========================================================
-   ERROR MESSAGE
-   ========================================================= */
+/* ERROR */
 .error {
   color: #e63946;
-  margin-top: 12px;
   font-size: 14px;
-  font-weight: 500;
+  margin-top: 8px;
 }
 
-/* =========================================================
-   RESPONSIVE DESIGN
-   ========================================================= */
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 1000px) {
+  .signup-wrapper {
+    grid-template-columns: 1fr;
+    row-gap: 80px;
+    padding: 80px 24px;
+  }
 
-/* ============= TABLETS ============= */
-@media (max-width: 992px) {
-  .auth-container {
-    padding: 40px 40px;
-    flex-direction: column;
+  .signup-left,
+  .signup-right {
     text-align: center;
-  }
-
-  .login-left,
-  .signup-right,
-  .signup-left {
-    width: 100%;
-  }
-
-  .auth-form {
-    width: 100%;
-    max-width: 360px;
+    max-width: 420px;
     margin: 0 auto;
-    margin-top: 30px;
   }
 
-  .circle1 {
-    width: 700px;
-    height: 700px;
-    top: -200px;
-    left: -220px;
-  }
-
-  .circle2 {
-    right: -30px;
-  }
-}
-
-/* ============= PHONES ============= */
-@media (max-width: 600px) {
-  .auth-container {
-    padding: 30px 20px;
-  }
-
-  .auth-title {
-    font-size: 40px;
-  }
-
-  .circle1 {
-    width: 550px;
-    height: 550px;
-    top: -150px;
-    left: -200px;
-  }
-
-  .circle2 {
-    width: 200px;
-    height: 200px;
-    bottom: 20px;
-  }
-
-  .circle3 {
-    display: none;
-  }
-
-  .auth-form {
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .auth-btn {
-    width: 100%;
-  }
-
-  .mini-btn {
-    width: 100%;
-    text-align: center;
+  .left-btn {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
