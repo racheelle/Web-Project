@@ -1,42 +1,28 @@
 import express from "express";
+import {
+  getLogin,
+  getSignup,
+  postLogin,
+  postSignup,
+  logout,
+} from "../controllers/authController.js";
+
 const router = express.Router();
 
-// GET — Login
-router.get("/login", (req, res) => {
-  res.render("auth/login", { pageTitle: "Login" });
+// Login
+router.get("/login", getLogin);
+router.post("/login", postLogin);
+
+// Signup
+router.get("/signup", getSignup);
+router.post("/signup", postSignup);
+
+// Logout
+router.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/");
+  });
 });
 
-// GET — Signup
-router.get("/signup", (req, res) => {
-  res.render("auth/signup", { pageTitle: "Sign Up" });
-});
-
-// POST — Login
-router.post("/login", (req, res) => {
-  const { email, username } = req.body;
-
-  if (!email || !username) {
-    return res.render("auth/login", {
-      pageTitle: "Login",
-      errorMessage: "Please fill all fields."
-    });
-  }
-
-  res.redirect("/");
-});
-
-// POST — Signup
-router.post("/signup", (req, res) => {
-  const { name, email, username } = req.body;
-
-  if (!name || !email || !username) {
-    return res.render("auth/signup", {
-      pageTitle: "Sign Up",
-      errorMessage: "Please fill all fields."
-    });
-  }
-
-  res.redirect("/login");
-});
 
 export default router;

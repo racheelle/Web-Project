@@ -1,0 +1,8 @@
+give me a run down of the objective, what we have done so far (forget the edit part), what we still have to do, and everything else 
+
+
+//to edit l databases:
+ALTER TABLE contact_messages
+ADD COLUMN is_read TINYINT(1) DEFAULT 0;
+
+

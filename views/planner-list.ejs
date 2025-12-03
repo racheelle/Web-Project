@@ -1,0 +1,49 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<link rel="stylesheet" href="/css/planner.css">
+
+<section class="planner-list-page">
+  <div class="planner-list-header">
+    <h1>Your Planners</h1>
+    <a href="/planner/new" class="btn-primary">Create New Planner</a>
+  </div>
+
+  <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
+    <p class="planner-error"><%= errorMessage %></p>
+  <% } %>
+
+  <% if (!planners || planners.length === 0) { %>
+    <p>You don’t have any planners yet. Create your first one!</p>
+  <% } else { %>
+    <table class="planner-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% planners.forEach(p => { %>
+          <tr>
+            <td><%= p.name %></td>
+            <td><%= p.start_date.toISOString ? p.start_date.toISOString().slice(0,10) : String(p.start_date).slice(0,10) %></td>
+            <td><%= p.end_date.toISOString ? p.end_date.toISOString().slice(0,10) : String(p.end_date).slice(0,10) %></td>
+            <td><%= p.created_at.toISOString ? p.created_at.toISOString().slice(0,10) : String(p.created_at).slice(0,10) %></td>
+            <td class="planner-actions-col">
+              <a href="/planner/<%= p.id %>" class="btn-small">Open</a>
+              <form action="/planner/<%= p.id %>/delete" method="POST" onsubmit="return confirm('Delete this planner?')" style="display:inline;">
+                <button class="btn-small btn-danger" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</section>
+
+<%- include("includes/footer") %>

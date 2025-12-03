@@ -1,8 +1,10 @@
-/* GLOBAL */
+/* =========================================================
+   GLOBAL CONTAINER
+   ========================================================= */
 .auth-container {
   width: 100%;
   min-height: 100vh;
-  padding: 80px 100px;
+  padding: 60px 80px;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -12,49 +14,127 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* TEXT */
-h1 {
+/* Keeps form ABOVE the circles */
+.auth-container > * {
+  position: relative;
+  z-index: 5;
+}
+
+/* =========================================================
+   BACKGROUND CIRCLES (BEHIND CONTENT)
+   ========================================================= */
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: #f1f1f1;
+  opacity: 0.35;
+  z-index: 1 !important;
+}
+
+.circle1 {
+  width: 900px;
+  height: 900px;
+  top: -260px;
+  left: -250px;
+}
+
+.circle2 {
+  width: 350px;
+  height: 350px;
+  bottom: 50px;
+  right: 150px;
+}
+
+.circle3 {
+  width: 250px;
+  height: 250px;
+  bottom: -30px;
+  left: 120px;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+.auth-title {
   font-size: 58px;
   font-weight: 700;
   color: #1b1c1e;
+  line-height: 1.1;
 }
 
-h1 span {
+.auth-title span {
   color: #FFA03F;
   text-decoration: underline;
   text-decoration-color: #FFA03F;
 }
 
-.signup-left h2 span {
-  color: #FFA03F;
-  text-decoration: underline;
+.auth-subtitle {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #5c5c5c;
 }
 
-/* FORM */
+/* =========================================================
+   LAYOUT PANELS
+   ========================================================= */
+.login-left,
+.signup-right {
+  width: 45%;
+}
+
+.signup-left,
+.login-right {
+  width: 40%;
+}
+
+/* Ensures text block stays above circles */
+.login-left,
+.signup-left,
+.signup-right {
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================================
+   FORM STYLING
+   ========================================================= */
 .auth-form {
   display: flex;
   flex-direction: column;
   width: 400px;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .auth-form label {
   font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-
-.auth-form input {
-  padding: 12px 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  margin-top: 22px;
+  margin-bottom: 6px;
   font-size: 15px;
 }
 
-/* BUTTONS */
+.auth-form input {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  background: white;
+  transition: 0.2s ease;
+  position: relative;
+  z-index: 15;
+}
+
+.auth-form input:focus {
+  border-color: #FFA03F;
+  box-shadow: 0 0 0 3px rgba(255,160,63,0.25);
+  outline: none;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 .auth-btn {
   margin-top: 30px;
-  padding: 12px 20px;
+  padding: 14px 22px;
   background: #FFA03F;
   color: #fff;
   border: none;
@@ -62,11 +142,15 @@ h1 span {
   cursor: pointer;
   font-size: 17px;
   font-weight: 600;
-  box-shadow: 0 4px 20px rgba(255,160,63,0.4);
+  box-shadow: 0 5px 20px rgba(255,160,63,0.4);
+  position: relative;
+  z-index: 20;
+  transition: 0.2s ease;
 }
 
 .auth-btn:hover {
   background: #ff8d20;
+  transform: translateY(-2px);
 }
 
 .mini-btn {
@@ -75,55 +159,98 @@ h1 span {
   color: #fff;
   border-radius: 10px;
   text-decoration: none;
-  margin-top: 20px;
+  margin-top: 25px;
   display: inline-block;
+  font-weight: 500;
+  position: relative;
+  z-index: 20;
 }
 
-/* RIGHT SIDE SIGNUP */
-.signup-right {
-  width: 45%;
-}
-
-.signup-left {
-  width: 45%;
-}
-
-/* LOGIN LEFT SIDE */
-.login-left {
-  width: 50%;
-}
-
-/* BACKGROUND CIRCLES */
-.bg-circle {
-  position: absolute;
-  border-radius: 50%;
-  background: #eaeaea;
-  opacity: 0.35;
-}
-
-.circle1 {
-  width: 900px;
-  height: 900px;
-  top: -250px;
-  left: -200px;
-}
-
-.circle2 {
-  width: 300px;
-  height: 300px;
-  bottom: 100px;
-  right: 200px;
-}
-
-.circle3 {
-  width: 200px;
-  height: 200px;
-  bottom: -20px;
-  left: 100px;
-}
-
-/* ERROR MESSAGE */
+/* =========================================================
+   ERROR MESSAGE
+   ========================================================= */
 .error {
   color: #e63946;
-  margin-top: 10px;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+/* ============= TABLETS ============= */
+@media (max-width: 992px) {
+  .auth-container {
+    padding: 40px 40px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .login-left,
+  .signup-right,
+  .signup-left {
+    width: 100%;
+  }
+
+  .auth-form {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+
+  .circle1 {
+    width: 700px;
+    height: 700px;
+    top: -200px;
+    left: -220px;
+  }
+
+  .circle2 {
+    right: -30px;
+  }
+}
+
+/* ============= PHONES ============= */
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 30px 20px;
+  }
+
+  .auth-title {
+    font-size: 40px;
+  }
+
+  .circle1 {
+    width: 550px;
+    height: 550px;
+    top: -150px;
+    left: -200px;
+  }
+
+  .circle2 {
+    width: 200px;
+    height: 200px;
+    bottom: 20px;
+  }
+
+  .circle3 {
+    display: none;
+  }
+
+  .auth-form {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .auth-btn {
+    width: 100%;
+  }
+
+  .mini-btn {
+    width: 100%;
+    text-align: center;
+  }
 }

@@ -1,0 +1,181 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<link rel="stylesheet" href="/css/planner.css">
+
+<section
+  class="planner-hero"
+>
+  <h1><span>Weekly</span> Planner</h1>
+
+  <div class="planner-top-controls">
+
+    <form
+      id="plannerForm"
+      action="<%= mode === 'new' ? '/planner/new' : '/planner/' + planner.id %>"
+      method="POST"
+      class="planner-meta"
+    >
+      <% if (mode === 'view') { %>
+        <input type="hidden" name="id" value="<%= planner.id %>">
+      <% } %>
+
+      <div class="field-group">
+        <label>Name</label>
+        <input
+          type="text"
+          name="name"
+          value="<%= planner.name %>"
+          <%= mode === 'view' ? 'readonly' : '' %>
+          required
+        >
+      </div>
+
+      <div class="field-group">
+        <label>Start Date</label>
+        <input
+          type="date"
+          name="start_date"
+          value="<%= planner.start_date %>"
+          <%= mode === 'view' ? 'readonly' : '' %>
+          required
+        >
+      </div>
+
+      <div class="field-group">
+        <label>End Date</label>
+        <input
+          type="date"
+          name="end_date"
+          value="<%= planner.end_date %>"
+          <%= mode === 'view' ? 'readonly' : '' %>
+          required
+        >
+      </div>
+    </form>
+
+    <div class="planner-actions">
+      <a href="/planner" class="btn-secondary">View all</a>
+      <% if (mode === 'view') { %>
+        <a href="/planner/new" class="btn-primary">Add New</a>
+      <% } %>
+    </div>
+  </div>
+
+  <% if (mode === 'new') { %>
+    <p class="planner-hint">
+      Save your planner first, then you’ll be able to add activities to the grid.
+    </p>
+  <% } %>
+
+  <div class="view-toggle">
+    <% if (planner.id) { %>
+      <a href="/planner/<%= planner.id %>?view=weekly"
+         class="<%= viewType === 'weekly' ? 'active' : '' %>">Weekly</a>
+      <a href="/planner/<%= planner.id %>?view=daily&day=<%= viewDay %>"
+         class="<%= viewType === 'daily' ? 'active' : '' %>">Daily</a>
+    <% } else { %>
+      <span class="active">Weekly</span>
+      <span>Daily</span>
+    <% } %>
+  </div>
+</section>
+
+<section
+  class="planner-grid-wrapper"
+  data-mode="<%= mode %>"
+  data-planner-id="<%= planner.id || '' %>"
+>
+  <% if (viewType === 'weekly') { %>
+    <div class="planner-grid">
+      <div class="time-col-header">Time</div>
+      <% days.forEach(day => { %>
+        <div class="day-col-header"><%= day %></div>
+      <% }) %>
+
+      <% timeSlots.forEach(slot => { %>
+        <div class="time-cell"><%= slot %></div>
+
+        <% days.forEach(day => { %>
+          <% const text = items[day] && items[day][slot] ? items[day][slot] : ''; %>
+          <div
+            class="planner-cell <%= text ? 'has-activity' : '' %>"
+            data-day="<%= day %>"
+            data-slot="<%= slot %>"
+          >
+            <span class="cell-text"><%= text %></span>
+          </div>
+        <% }) %>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="planner-daily">
+      <h2><%= viewDay %> – Daily View</h2>
+
+      <div class="daily-list">
+        <% timeSlots.forEach(slot => { %>
+          <% const text = items[viewDay] && items[viewDay][slot] ? items[viewDay][slot] : ''; %>
+          <div
+            class="daily-row <%= text ? 'has-activity' : '' %>"
+            data-day="<%= viewDay %>"
+            data-slot="<%= slot %>"
+          >
+            <div class="daily-time"><%= slot %></div>
+            <div class="daily-activity"><%= text || '—' %></div>
+          </div>
+        <% }) %>
+      </div>
+
+      <div class="daily-day-switch">
+        <% days.forEach(d => { %>
+          <a href="/planner/<%= planner.id %>?view=daily&day=<%= d %>"
+             class="<%= d === viewDay ? 'active' : '' %>"><%= d %></a>
+        <% }) %>
+      </div>
+    </div>
+  <% } %>
+
+  <div class="planner-bottom-buttons">
+    <% if (mode === 'view') { %>
+      <button class="btn-secondary" type="button" id="editBtn">Edit</button>
+      <button class="btn-primary" type="submit" id="saveBtn" form="plannerForm" disabled>Save</button>
+    <% } else { %>
+      <button class="btn-primary" type="submit" id="saveBtn" form="plannerForm">Save</button>
+    <% } %>
+  </div>
+</section>
+
+<div id="activityModal" class="planner-modal hidden">
+  <div class="planner-modal-backdrop"></div>
+  <div class="planner-modal-content">
+    <h3>Edit Activity</h3>
+
+    <label>Place (optional)</label>
+    <select id="modalPlaceSelect">
+      <option value="">No place</option>
+      <% places.forEach(pl => { %>
+        <option value="<%= pl.name %>"><%= pl.name %></option>
+      <% }) %>
+    </select>
+
+    <label>Details</label>
+    <textarea id="modalActivityText" rows="3" placeholder="What are you doing?"></textarea>
+
+    <div class="modal-buttons">
+      <button type="button" id="modalDelete" class="btn-danger">Delete</button>
+      <button type="button" id="modalCancel" class="btn-secondary">Cancel</button>
+      <button type="button" id="modalSave" class="btn-primary">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.ZU_PLANNER = {
+    mode: "<%= mode %>",
+    plannerId: "<%= planner.id || '' %>",
+    viewType: "<%= viewType %>"
+  };
+</script>
+<script src="/js/plannerEdit.js"></script>
+
+<%- include("includes/footer") %>

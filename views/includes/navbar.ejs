@@ -21,9 +21,36 @@
       <button class="icon-btn" aria-label="Menu">
         ☰
       </button>
-      <button class="icon-btn" aria-label="Account">
-        👤
-      </button>
+     <div class="account-wrapper">
+
+  <% if (!isAuthenticated) { %>
+    <!-- NOT LOGGED IN -->
+    <button class="icon-btn" aria-label="Account" onclick="window.location.href='/signup'">
+      👤
+    </button>
+
+  <% } else { %>
+    <!-- LOGGED IN -->
+    <button class="icon-btn account-btn" aria-label="Account">
+      👤
+    </button>
+
+    <div class="account-menu">
+      <p class="hello">Hi, <%= user.username %> 👋</p>
+      <a href="/planner">My Planner</a>
+
+      <% if (user.role === "admin") { %>
+        <a href="/admin">Admin Panel</a>
+      <% } %>
+
+      <a href="/logout" class="logout">Logout</a>
+    </div>
+
+  <% } %>
+
+</div>
+
+
     </div>
   </div>
 </header>

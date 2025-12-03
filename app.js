@@ -1,8 +1,7 @@
 import express from "express";
 import session from "express-session";
-import MySQLStore from "express-mysql-session"; //npm install express-mysql-session
+import MySQLStore from "express-mysql-session";
 import path from "path";
-// i'll ignore the import dotenv from "dotenv";
 
 import rootDir from "./utils/path.js";
 import db from "./utils/database.js";
@@ -14,20 +13,25 @@ import adminRoutes from "./routes/adminRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
+import exploreRoutes from "./routes/exploreRoutes.js";
+import placeRoutes from "./routes/placeRoutes.js";
 
 const app = express();
 
 const MySQLSessionStore = MySQLStore(session);
 const sessionStore = new MySQLSessionStore({}, db);
 
+// View engine
 app.set("view engine", "ejs");
 app.set("views", path.join(rootDir, "views"));
 
+// Static files
 app.use(express.static(path.join(rootDir, "public")));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Session
 app.use(
   session({
     secret: "mySuperSecretKey123",
@@ -37,24 +41,38 @@ app.use(
   })
 );
 
+// Global locals
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   res.locals.isAuthenticated = !!req.session.user;
   next();
 });
 
+/* ---------------- ROUTES ---------------- */
+
+// Public site pages (home, about, etc.)
 app.use("/", mainRoutes);
-app.use("/", authRoutes);
+
+// Public pages
+app.use("/explore", exploreRoutes);
+app.use("/place", placeRoutes);
 app.use("/planner", plannerRoutes);
-app.use("/admin", adminRoutes);
 app.use("/reviews", reviewRoutes);
 app.use("/newsletter", newsletterRoutes);
 app.use("/contact", contactRoutes);
+
+// Auth (login + register)
+app.use("/", authRoutes);
+
+// Admin (last)
+app.use("/admin", adminRoutes);
+
+/* -------------- 404 HANDLER -------------- */
 
 app.use((req, res) => {
   res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
 
-app.listen(8000, "localhost", () =>
-  console.log("Server running on http://localhost:8000")
+app.listen(3001, "localhost", () =>
+  console.log("Server running on http://localhost:3001")
 );

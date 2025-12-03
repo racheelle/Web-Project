@@ -1,0 +1,51 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<link rel="stylesheet" href="/css/explore.css">
+
+<section class="explore-container">
+
+  <!-- HEADER -->
+  <div class="explore-header">
+    <h1>Explore <span>Zahle</span></h1>
+    <p>Discover the best spots the city has to offer</p>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="explore-categories">
+    <% categories.forEach(cat => { %>
+      <div class="category-card">
+        <img src="<%= cat.icon %>" alt="<%= cat.name %>">
+        <p><%= cat.name %></p>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- PLACES LIST -->
+  <div class="explore-places">
+    <% places.forEach(place => { %>
+
+      <a href="/place/<%= place.id %>" class="place-card">
+
+        <img class="place-img" src="/uploads/<%= place.main_image %>" alt="<%= place.name %>">
+
+        <div class="place-info">
+          <h3><%= place.name %></h3>
+          <p class="place-category"><%= place.category %></p>
+
+          <div class="place-extra">
+            <span class="rating">⭐ <%= place.rating %></span>
+            <span class="price">$<%= place.price_min %> - $<%= place.price_max %></span>
+          </div>
+
+          <p class="location">📍 <%= place.location %></p>
+        </div>
+
+      </a>   <!-- ✔ this closes correctly -->
+
+    <% }) %>
+  </div>
+
+</section>
+
+<%- include("includes/footer") %>

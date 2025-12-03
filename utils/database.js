@@ -6,7 +6,7 @@ const pool = mysql2
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "christelUA123",
+    password: "Rachelle_22",
     database: "zahle_uncovered",
   })
   .promise();

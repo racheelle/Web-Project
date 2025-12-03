@@ -1,0 +1,58 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<link rel="stylesheet" href="/css/place-details.css">
+
+<section class="place-details-container">
+
+  <!-- MAIN IMAGE -->
+  <div class="place-main-image">
+    <img src="/uploads/<%= place.main_image %>" alt="<%= place.name %>">
+  </div>
+
+  <!-- TITLE + CATEGORY -->
+  <div class="place-header">
+    <h1><%= place.name %></h1>
+    <span class="category-tag"><%= place.category_name %></span>
+  </div>
+
+  <!-- PRICE + RATING + LOCATION -->
+  <div class="place-meta">
+    <p class="rating">⭐ <%= place.rating %></p>
+    <p class="price">💸 <%= place.price_min %> - <%= place.price_max %> USD</p>
+    <p class="location">📍 <%= place.location %></p>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="place-description">
+    <h2>Description</h2>
+    <p><%= place.description %></p>
+  </div>
+
+  <!-- ADDITIONAL IMAGES -->
+  <div class="place-gallery">
+    <% images.forEach(img => { %>
+      <img src="/uploads/<%= img.image_path %>" alt="Gallery Image">
+    <% }) %>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="reviews-section">
+    <h2>Reviews</h2>
+
+    <% if (reviews.length === 0) { %>
+      <p>No reviews yet.</p>
+    <% } %>
+
+    <% reviews.forEach(r => { %>
+      <div class="review-card">
+        <p class="reviewer">👤 <%= r.reviewer %></p>
+        <p class="star">⭐ <%= r.rating %></p>
+        <p class="comment"><%= r.comment %></p>
+      </div>
+    <% }) %>
+  </div>
+
+</section>
+
+<%- include("includes/footer") %>

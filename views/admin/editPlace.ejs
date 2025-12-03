@@ -1,0 +1,111 @@
+<%- include("../includes/head") %>
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="/css/forms.css">
+
+<div class="admin-container">
+
+  <aside class="admin-sidebar">
+    <h2>Zahle Admin</h2>
+    <a href="/admin">Dashboard</a>
+   <a href="/admin/messages">Messages</a>
+    <a href="/admin/places">Manage Places</a>
+    <a class="active" href="#">Edit Place</a>
+      <a href="/admin/places/add">Add Place</a>
+     <a href="/" class="back-home">Back to Homepage</a>
+
+
+    <div class="logout-link">
+      <a href="/logout">Logout</a>
+    </div>
+
+    
+
+  </aside>
+
+  <main class="admin-main">
+
+    <h1>Edit Place</h1>
+
+    <form action="/admin/places/edit/<%= place.id %>" method="POST" enctype="multipart/form-data" class="admin-form">
+
+      <input type="hidden" name="existing_main_image" value="<%= place.main_image %>">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" value="<%= place.name %>" required>
+        </div>
+
+        <div>
+          <label>Category</label>
+          <select name="category_id">
+            <% categories.forEach(c => { %>
+              <option value="<%= c.id %>" <%= c.id === place.category_id ? "selected" : "" %> >
+                <%= c.name %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="full">
+          <label>Description</label>
+          <textarea name="description"><%= place.description %></textarea>
+        </div>
+
+        <div>
+          <label>Location</label>
+          <input type="text" name="location" value="<%= place.location %>">
+        </div>
+
+        <div>
+          <label>Price Min</label>
+          <input type="number" name="price_min" value="<%= place.price_min %>">
+        </div>
+
+        <div>
+          <label>Price Max</label>
+          <input type="number" name="price_max" value="<%= place.price_max %>">
+        </div>
+
+        <div class="full">
+          <label>Days Available</label>
+          <div class="days-grid">
+            <% ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(day => { %>
+              <label class="day-chip">
+                <input type="checkbox" name="days" value="<%= day %>" <%= selectedDays.includes(day) ? "checked" : "" %> >
+                <span><%= day %></span>
+              </label>
+            <% }) %>
+          </div>
+        </div>
+
+        <div>
+          <label>Main Image</label>
+          <input type="file" name="main_image" accept="image/*">
+
+          <p>Current:</p>
+          <img src="/uploads/<%= place.main_image %>" style="width:120px; border-radius:10px;">
+        </div>
+
+        <div>
+          <label>Gallery Images</label>
+          <input type="file" name="images" multiple accept="image/*">
+
+          <div class="gallery-preview">
+            <% gallery.forEach(img => { %>
+              <img src="/uploads/<%= img.image_path %>" style="width:90px; margin-right:10px; border-radius:10px;">
+            <% }) %>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="btn-save">Save Changes</button>
+    </form>
+
+  </main>
+
+</div>
+
+

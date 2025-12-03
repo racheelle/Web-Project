@@ -1,0 +1,164 @@
+/* GLOBAL */
+.about-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 100px;
+  gap: 60px;
+}
+
+.about-hero h1 {
+  font-size: 56px;
+  font-weight: 700;
+  color: #1b1c1e;
+}
+
+.about-hero h1 span {
+  color: #FFA03F;
+}
+
+.about-hero p {
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-img img {
+  width: 480px;
+  border-radius: 20px;
+}
+
+
+
+/* MISSION */
+.mission-section {
+  padding: 100px 100px;
+  background: #fff;
+}
+
+.mission-section h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.mission-list {
+  display: flex;
+  gap: 40px;
+}
+
+.mission-list li {
+  flex: 1;
+  background: #fafafa;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.mission-list h3 {
+  color: #FFA03F;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.mission-list p {
+  font-size: 16px;
+}
+
+
+
+/* EXPLORE EASY */
+.explore-easy {
+  display: flex;
+  align-items: center;
+  padding: 120px 100px;
+  gap: 60px;
+  background: #FFA03F;
+  color: #fff;
+}
+
+.explore-easy h2 {
+  font-size: 42px;
+}
+
+.explore-easy p {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.btn-explore {
+  background: #1b1c1e;
+  padding: 12px 25px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.explore-img img {
+  width: 350px;
+}
+
+
+
+/* WHY ZAHLE */
+.why-zahle {
+  display: flex;
+  align-items: center;
+  padding: 140px 100px;
+  gap: 70px;
+}
+
+.why-text h2 {
+  font-size: 48px;
+}
+
+.why-text span {
+  color: #FFA03F;
+}
+
+.stats {
+  display: flex;
+  gap: 50px;
+  margin: 30px 0;
+}
+
+.stat h3 {
+  font-size: 36px;
+  color: #FFA03F;
+}
+
+.stat p {
+  font-size: 15px;
+}
+
+.btn-explore-light {
+  background: #FFA03F;
+  padding: 12px 25px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  .about-hero,
+  .explore-easy,
+  .why-zahle {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-img img,
+  .explore-img img,
+  .why-img img {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .mission-list {
+    flex-direction: column;
+  }
+}

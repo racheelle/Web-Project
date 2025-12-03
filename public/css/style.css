@@ -776,4 +776,47 @@ main {
   .footer-grid {
     grid-template-columns: 1fr;
   }
+  
 }
+
+
+/*STYLES ZYEDE WHEN DOING THE LOGOUT W HEK*/
+
+.account-wrapper {
+  position: relative;
+}
+
+.account-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  width: 180px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+.account-menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+}
+
+.account-menu .logout {
+  color: #ff4d4d;
+}
+
+.account-menu .hello {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.account-wrapper.show .account-menu {
+  display: flex;
+}
+/* END OF STYLES ZYEDE WHEN DOING THE LOGOUT W HEK*/

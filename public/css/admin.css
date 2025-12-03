@@ -1,0 +1,208 @@
+.admin-container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins";
+}
+
+.admin-sidebar {
+  width: 250px;
+  background: #ffa03f;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+}
+
+.admin-sidebar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 0;
+}
+
+.admin-sidebar a.active {
+  font-weight: 700;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-edit {
+  background: #ffc97b;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-delete {
+  background: #ff5757;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/*stuff lal add place css (open days checkboxes)*/
+.day-selector {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0 20px;
+}
+
+.day-btn {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.day-btn.active {
+  background: #FFA03F;
+  border-color: #FFA03F;
+  color: #fff;
+}
+
+/* End of checkbox stuff */
+
+
+
+
+
+
+
+
+
+/* DELETE MODAL BACKDROP */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* MODAL BOX */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 7px 20px rgba(0,0,0,0.2);
+}
+
+.modal-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.yes {
+  background: #ff4b4b;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.no {
+  background: #ddd;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+/*DELETE MODAL END */
+
+
+
+
+
+
+
+/* CONTACT MESSAGES TABLE */
+.unread-row {
+  background-color: #ffecec;
+  font-weight: bold;
+}
+
+.view-btn, .mark-read, .mark-unread, .delete-btn {
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mark-read {
+  background-color: #c6ffc6;
+}
+
+.mark-unread {
+  background-color: #ffe9b3;
+}
+
+.delete-btn {
+  background-color: #ff9999;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  width: 420px;
+}
+
+.modal.show {
+  display: flex;
+}
+/* CONTACT MESSAGES TABLE END */

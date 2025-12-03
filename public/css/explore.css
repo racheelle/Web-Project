@@ -1,0 +1,127 @@
+/* PAGE CONTAINER */
+.explore-container {
+  padding: 60px 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* HEADER */
+.explore-header h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.explore-header h1 span {
+  color: #FFA03F;
+  text-decoration: underline;
+}
+
+.explore-header p {
+  margin-top: 5px;
+  color: #555;
+}
+
+/* CATEGORY CARDS */
+.explore-categories {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+  width: 130px;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-card img {
+  width: 50px;
+  height: 50px;
+}
+
+/* =============================
+   PLACE CARDS (MAIN FIX!)
+   ============================= */
+
+.explore-places {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* <a> must behave like a card */
+.place-card {
+  display: block;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  text-decoration: none; /* remove link underline */
+  color: inherit;        /* keep text dark */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.place-card:hover {
+  transform: translateY(-5px);
+}
+
+/* IMAGE */
+.place-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* CONTENT AREA */
+.place-info {
+  padding: 15px;
+}
+
+.place-info h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.place-category {
+  color: #FFA03F;
+  font-weight: 500;
+}
+
+.place-extra {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.location {
+  color: #777;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .explore-container {
+    padding: 30px 20px;
+  }
+
+  .explore-categories {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .category-card {
+    flex-shrink: 0;
+  }
+}

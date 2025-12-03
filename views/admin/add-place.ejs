@@ -1,0 +1,94 @@
+<%- include("../includes/head") %>
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="/css/forms.css">
+
+<div class="admin-container">
+
+  <!-- SIDEBAR -->
+
+      <aside class="admin-sidebar">
+    <h2>Zahle Admin</h2>
+    <a href="/admin">Dashboard</a>
+    <a href="/admin/messages">Messages</a>
+    <a href="/admin/places">Manage Places</a>
+    <a class="active" href="/admin/places/add">Add Place</a>
+    <a href="/" class="back-home">Back to Homepage</a>
+    <a href="/logout">Logout</a>
+  </aside>
+   
+
+  <!-- MAIN CONTENT -->
+  <main class="admin-main">
+    <h1>Add New Place</h1>
+
+    <form action="/admin/places/add" method="POST"
+          enctype="multipart/form-data"
+          class="admin-form">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" required>
+        </div>
+
+        <div>
+          <label>Category</label>
+          <select name="category_id" required>
+            <% categories.forEach(c => { %>
+              <option value="<%= c.id %>"><%= c.name %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="full">
+          <label>Description</label>
+          <textarea name="description" required></textarea>
+        </div>
+
+        <div>
+          <label>Location</label>
+          <input type="text" name="location">
+        </div>
+
+        <div>
+          <label>Price Min</label>
+          <input type="number" name="price_min">
+        </div>
+
+        <div>
+          <label>Price Max</label>
+          <input type="number" name="price_max">
+        </div>
+
+        <!-- DAYS AVAILABLE -->
+        <div class="full">
+          <label>Days Available</label>
+          <div class="days-grid">
+            <% const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]; %>
+            <% days.forEach(day => { %>
+              <label class="day-chip">
+                <input type="checkbox" name="days_available" value="<%= day %>">
+                <span><%= day %></span>
+              </label>
+            <% }) %>
+          </div>
+        </div>
+
+        <div>
+          <label>Main Image</label>
+          <input type="file" name="main_image" required>
+        </div>
+
+        <div>
+          <label>Gallery Images (optional)</label>
+          <input type="file" name="images" multiple>
+        </div>
+
+      </div>
+
+      <button class="btn-save">Save Place</button>
+    </form>
+  </main>
+
+</div>

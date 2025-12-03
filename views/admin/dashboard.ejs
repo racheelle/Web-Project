@@ -1,0 +1,22 @@
+<%- include("../includes/head") %>
+
+<link rel="stylesheet" href="/css/admin.css">
+
+<div class="admin-container">
+
+  <aside class="admin-sidebar">
+    <h2>Zahle Admin</h2>
+    <a href="/admin">Dashboard</a>
+    <a href="/admin/messages">Messages</a>
+    <a href="/admin/places">Manage Places</a>
+    <a href="/admin/places/add">Add Place</a>
+    <a href="/" class="back-home">Back to Homepage</a>
+    <a href="/logout">Logout</a>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Welcome, <%= user.username %>!</h1>
+    <p>Select a section from the menu to manage the website.</p>
+  </main>
+
+</div>

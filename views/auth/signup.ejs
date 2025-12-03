@@ -1,35 +1,74 @@
-<%- include('../partials/navbar') %>
+<%- include("../includes/head") %>
+<%- include("../includes/navbar") %>
 
 <link rel="stylesheet" href="/css/auth.css">
 
 <section class="auth-container signup-page">
 
-    <div class="signup-right">
-        <h1>Sign <span>up</span></h1>
+  <!-- RIGHT SIDE FORM (Figma layout) -->
+  <div class="signup-right">
+    <h1 class="auth-title">Sign <span>up</span></h1>
 
-        <form action="/signup" method="POST" class="auth-form">
+    <form action="/signup" method="POST" class="auth-form">
 
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Enter full name" required>
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="Enter full name"
+        required
+      >
 
-            <label>Email</label>
-            <input type="email" name="email" placeholder="Enter email" required>
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter email"
+        required
+      >
 
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Your username..." required>
+      <label>Username</label>
+      <input
+        type="text"
+        name="username"
+        placeholder="Choose a username"
+        required
+      >
 
-            <% if (typeof errorMessage !== 'undefined') { %>
-              <p class="error"><%= errorMessage %></p>
-            <% } %>
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Create a password"
+        required
+      >
 
-            <button class="auth-btn">Sign up</button>
-        </form>
-    </div>
+      <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
+        <p class="error"><%= errorMessage %></p>
+      <% } %>
 
-    <div class="signup-left">
-        <h2>Welcome <span>back!</span></h2>
-        <p>Already have an account? Sign in here!</p>
-        <a href="/login" class="mini-btn">Sign in</a>
-    </div>
+      <button class="auth-btn">Sign up</button>
+    </form>
+  </div>
+
+  <!-- LEFT SIDE TEXT (Figma layout) -->
+  <div class="signup-left">
+    <h2 class="auth-title" style="font-size:48px;">
+      Welcome <span>back!</span>
+    </h2>
+
+    <p class="auth-subtitle">
+      Already have an account? Sign in here!
+    </p>
+
+    <a href="/login" class="mini-btn">Sign in</a>
+  </div>
+
+  <!-- BACKGROUND CIRCLES -->
+  <div class="bg-circle circle1"></div>
+  <div class="bg-circle circle2"></div>
+  <div class="bg-circle circle3"></div>
 
 </section>
+
+<%- include("../includes/footer") %>
