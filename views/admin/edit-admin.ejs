@@ -1,0 +1,52 @@
+<%- include("../includes/head") %>
+<link rel="stylesheet" href="/css/admin.css">
+
+<div class="admin-container">
+
+  <aside class="admin-sidebar">
+    <h2>Zahle Admin</h2>
+    <a href="/admin">Dashboard</a>
+    <a href="/admin/admins" class="active">Manage Admins</a>
+    <a href="/admin/messages">Messages</a>
+    <a href="/admin/places">Manage Places</a>
+     <a href="/admin/admins">Manage Admins</a>
+    <a href="/" class="back-home">Back to Homepage</a>
+    <a href="/logout">Logout</a>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Edit Admin</h1>
+
+    <form action="/admin/admins/edit/<%= admin.id %>" method="POST" class="admin-form">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" value="<%= admin.name %>" required>
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" value="<%= admin.email %>" required>
+        </div>
+
+        <div>
+          <label>Username</label>
+          <input type="text" name="username" value="<%= admin.username %>" required>
+        </div>
+
+        <div>
+          <label>New Password (optional)</label>
+          <input type="password" name="password" placeholder="Leave empty to keep existing">
+        </div>
+
+      </div>
+
+      <button class="btn-primary">Save Changes</button>
+
+    </form>
+
+  </main>
+
+</div>

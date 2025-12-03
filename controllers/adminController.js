@@ -2,6 +2,8 @@ import db from "../utils/database.js";
 import fs from "fs";
 import path from "path";
 import rootDir from "../utils/path.js";
+import bcrypt from "bcrypt";
+
 
 /* ==============================================================
    DASHBOARD
@@ -21,7 +23,7 @@ export const getAdminDashboard = async (req, res) => {
 export const getContactMessages = async (req, res) => {
   try {
     const [messages] = await db.query(`
-      SELECT id, fname, lname, email, message, created_at
+      SELECT id, fname, lname, email, message, created_at, is_read
       FROM contact_messages
       ORDER BY created_at DESC
     `);
@@ -335,3 +337,120 @@ export const postDeletePlace = async (req, res) => {
     res.redirect("/admin/places");
   }
 };
+
+
+/* ==============================================================
+   ADMIN MANAGEMENT
+================================================================= */
+
+/* ------ LIST ADMINS ------ */
+export const getAdmins = async (req, res) => {
+  const [admins] = await db.query(
+    "SELECT id, name, email, username, role FROM users WHERE role='admin'"
+  );
+
+  res.render("admin/admin-list", {
+    pageTitle: "Manage Admins",
+    admins,
+    user: req.session.user,
+    isAuthenticated: true
+  });
+};
+
+/* ------ ADD ADMIN (GET) ------ */
+export const getAddAdmin = (req, res) => {
+  res.render("admin/add-admin", {
+    pageTitle: "Add Admin",
+    user: req.session.user,
+    isAuthenticated: true
+  });
+};
+
+/* ------ ADD ADMIN (POST) ------ */
+export const postAddAdmin = async (req, res) => {
+  try {
+    const { name, email, username, password } = req.body;
+
+    const hashed = await bcrypt.hash(password, 10);
+
+    await db.query(
+      `INSERT INTO users (name, email, username, password, role)
+       VALUES (?, ?, ?, ?, 'admin')`,
+      [name, email, username, hashed]
+    );
+
+    res.redirect("/admin/admins");
+
+  } catch (err) {
+    console.log("Add admin error:", err);
+    res.status(500).send("Error adding admin");
+  }
+};
+
+/* ------ EDIT ADMIN (GET) ------ */
+export const getEditAdmin = async (req, res) => {
+  const id = req.params.id;
+
+  const [[admin]] = await db.query(
+    "SELECT id, name, email, username FROM users WHERE id=? AND role='admin'",
+    [id]
+  );
+
+  if (!admin) return res.redirect("/admin/admins");
+
+  res.render("admin/edit-admin", {
+    pageTitle: "Edit Admin",
+    admin,
+    user: req.session.user,
+    isAuthenticated: true
+  });
+};
+
+/* ------ EDIT ADMIN (POST) ------ */
+export const postEditAdmin = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name, email, username, password } = req.body;
+
+    if (password && password.trim() !== "") {
+      const hashed = await bcrypt.hash(password, 10);
+
+      await db.query(
+        `UPDATE users SET name=?, email=?, username=?, password=? WHERE id=? AND role='admin'`,
+        [name, email, username, hashed, id]
+      );
+    } else {
+      await db.query(
+        `UPDATE users SET name=?, email=?, username=? WHERE id=? AND role='admin'`,
+        [name, email, username, id]
+      );
+    }
+
+    res.redirect("/admin/admins");
+
+  } catch (err) {
+    console.log("Edit admin error:", err);
+    res.status(500).send("Error editing admin");
+  }
+};
+
+/* ------ DELETE ADMIN (POST) ------ */
+export const deleteAdmin = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // Prevent deleting yourself
+    if (req.session.user.id == id) {
+      return res.send("❌ You cannot delete your own admin account.");
+    }
+
+    await db.query("DELETE FROM users WHERE id=? AND role='admin'", [id]);
+
+    res.redirect("/admin/admins");
+
+  } catch (err) {
+    console.log("Delete admin error:", err);
+    res.status(500).send("Error deleting admin");
+  }
+};
+

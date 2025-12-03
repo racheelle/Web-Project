@@ -1,0 +1,52 @@
+<%- include("../includes/head") %>
+<link rel="stylesheet" href="/css/admin.css">
+
+<div class="admin-container">
+
+  <aside class="admin-sidebar">
+    <h2>Zahle Admin</h2>
+    <a href="/admin">Dashboard</a>
+    
+    <a href="/admin/messages">Messages</a>
+    <a href="/admin/places">Manage Places</a>
+    <a href="/admin/admins" class="active">Manage Admins</a>
+    <a href="/" class="back-home">Back to Homepage</a>
+    <a href="/logout">Logout</a>
+  </aside>
+
+  <main class="admin-main">
+    <h1>Add Admin</h1>
+
+    <form action="/admin/admins/add" method="POST" class="admin-form">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" required>
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+
+        <div>
+          <label>Username</label>
+          <input type="text" name="username" required>
+        </div>
+
+        <div>
+          <label>Password</label>
+          <input type="password" name="password" required>
+        </div>
+
+      </div>
+
+      <button class="btn-primary">Create Admin</button>
+
+    </form>
+
+  </main>
+
+</div>

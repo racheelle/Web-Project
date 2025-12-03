@@ -73,6 +73,6 @@ app.use((req, res) => {
   res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
 
-app.listen(3001, "localhost", () =>
-  console.log("Server running on http://localhost:3001")
+app.listen(3000, "localhost", () =>
+  console.log("Server running on http://localhost:3000")
 );

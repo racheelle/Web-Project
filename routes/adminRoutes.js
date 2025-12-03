@@ -1,52 +1,56 @@
 import express from "express";
 import {
   getAdminDashboard,
+
+  // Messages
+  getContactMessages,
+  markMessageRead,
+  markMessageUnread,
+  deleteMessage,
+
+  // Admin Management
+  getAdmins,
+  getAddAdmin,
+  postAddAdmin,
+  getEditAdmin,
+  postEditAdmin,
+  deleteAdmin,
+
+  // Places
   getPlacesList,
   getAddPlace,
   postAddPlace,
   getEditPlace,
   postEditPlace,
-  postDeletePlace        // ← Added
-  
+  postDeletePlace
 } from "../controllers/adminController.js";
 
 import isAdmin from "../middleware/isAdmin.js";
-import {
-  getContactMessages,
-  markMessageRead,
-  markMessageUnread,
-  deleteMessage
-} from "../controllers/adminController.js";
-
-
 import { upload } from "../utils/upload.js";
 
 const router = express.Router();
 
-
-
 // Dashboard
 router.get("/", isAdmin, getAdminDashboard);
 
-// View contact messages
+// Messages
 router.get("/messages", isAdmin, getContactMessages);
-
-// Contact messages
-router.get("/messages", isAdmin, getContactMessages);
-
-// Message actions
 router.post("/messages/read/:id", isAdmin, markMessageRead);
 router.post("/messages/unread/:id", isAdmin, markMessageUnread);
 router.post("/messages/delete/:id", isAdmin, deleteMessage);
 
+// Admin Management
+router.get("/admins", isAdmin, getAdmins);
+router.get("/admins/add", isAdmin, getAddAdmin);
+router.post("/admins/add", isAdmin, postAddAdmin);
+router.get("/admins/edit/:id", isAdmin, getEditAdmin);
+router.post("/admins/edit/:id", isAdmin, postEditAdmin);
+router.post("/admins/delete/:id", isAdmin, deleteAdmin);
 
-// Places list
+// Places
 router.get("/places", isAdmin, getPlacesList);
-
-// Add Place (GET)
 router.get("/places/add", isAdmin, getAddPlace);
 
-// Add Place (POST)
 router.post(
   "/places/add",
   isAdmin,
@@ -57,10 +61,8 @@ router.post(
   postAddPlace
 );
 
-// Edit Place (GET)
 router.get("/places/edit/:id", isAdmin, getEditPlace);
 
-// Edit Place (POST)
 router.post(
   "/places/edit/:id",
   isAdmin,
@@ -71,7 +73,6 @@ router.post(
   postEditPlace
 );
 
-// Delete Place
 router.post("/places/delete/:id", isAdmin, postDeletePlace);
 
 export default router;
