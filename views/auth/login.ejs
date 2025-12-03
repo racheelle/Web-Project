@@ -1,46 +1,36 @@
 <%- include("../includes/head") %>
 <%- include("../includes/navbar") %>
 
-<link rel="stylesheet" href="/css/auth.css">
+<link rel="stylesheet" href="/css/login.css">
 
-<section class="auth-container login-page">
 
-  <!-- LEFT SIDE TEXT (Figma layout) -->
-  <div class="login-left">
-    <h1 class="auth-title"><span>Welcome</span> back!</h1>
-    <p class="auth-subtitle">Enter your account information to sign in</p>
+<section class="login-page">
 
-    <form action="/login" method="POST" class="auth-form">
+  <div class="login-oval"></div>
 
-      <label>Email or Username</label>
-      <input
-        type="text"
-        name="identifier"
-        placeholder="Enter your email or username"
-        required
-      >
+  <h1 class="login-title">
+  Welcome <span class="black underline">back!</span>
+</h1>
 
-      <label>Password</label>
-      <input
-        type="password"
-        name="password"
-        placeholder="Enter your password"
-        required
-      >
+  <p class="login-subtitle">Enter your account information to sign in</p>
 
-      <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
-        <p class="error"><%= errorMessage %></p>
-      <% } %>
+  <form action="/login" method="POST" class="login-form">
 
-      <button class="auth-btn">Sign in</button>
-    </form>
-  </div>
+    <label>Email or Username</label>
+    <input type="text" name="identifier" placeholder="Enter your email or username" required>
 
-  <!-- BACKGROUND CIRCLES -->
-  <div class="bg-circle circle1"></div>
-  <div class="bg-circle circle2"></div>
-  <div class="bg-circle circle3"></div>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Enter your password" required>
+
+    <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
+      <p class="error"><%= errorMessage %></p>
+    <% } %>
+
+    <button class="login-btn">Sign in</button>
+
+  </form>
 
 </section>
+
 
 <%- include("../includes/footer") %>

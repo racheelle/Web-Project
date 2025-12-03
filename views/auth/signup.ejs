@@ -3,51 +3,46 @@
 
 <link rel="stylesheet" href="/css/auth.css">
 
-<section class="signup-wrapper">
+<section class="signup-section">
 
-  <!-- LEFT SIDE -->
-  <div class="signup-left">
-    <h1 class="left-title">
-      Welcome <span>back!</span>
-    </h1>
-
-    <p class="left-subtitle">
-      Already have an account? Sign in here!
-    </p>
-
-    <a href="/login" class="left-btn">Sign in</a>
-  </div>
-
-
-  <!-- RIGHT SIDE FORM -->
-  <div class="signup-right">
-    <h1 class="right-title">Sign <span>up</span></h1>
-
-    <form action="/signup" method="POST" class="signup-form">
-
-      <label>Name</label>
-      <input type="text" name="name" placeholder="Enter full name" required>
-
-      <label>Email</label>
-      <input type="email" name="email" placeholder="Enter email" required>
-
-      <label>Username</label>
-      <input type="text" name="username" placeholder="Your comment..." required>
-
-      <label>Password</label>
-      <input type="password" name="password" placeholder="Create a password" required>
-
-      <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
-        <p class="error"><%= errorMessage %></p>
-      <% } %>
-
-      <button class="signup-btn">Sign up</button>
-    </form>
-  </div>
-
-  <!-- BACKGROUND SHAPE -->
+  <!-- Background shape -->
   <div class="signup-bg"></div>
 
+  <div class="signup-content">
+
+    <!-- LEFT SIDE -->
+    <div class="signup-left">
+      <h1 class="left-title">Welcome <span>back!</span></h1>
+
+      <p class="left-subtitle">Already have an account? Sign in here!</p>
+
+      <a href="/login" class="left-btn">Sign in</a>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="signup-right">
+      <h1 class="right-title">Sign <span>up</span></h1>
+
+      <form action="/signup" method="POST" class="signup-form">
+
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Enter full name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter email" required>
+
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Your comment..." required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Create a password" required>
+
+        <button class="signup-btn">Sign up</button>
+
+      </form>
+    </div>
+
+  </div>
 </section>
 
 <%- include("../includes/footer") %>
