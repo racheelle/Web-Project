@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const metaInputs = document.querySelectorAll(".planner-meta input");
 
   const modal = document.getElementById("activityModal");
-  const modalBackdrop = modal.querySelector(".planner-modal-backdrop");
+  const modalBackdrop = modal.querySelector(".activity-modal-backdrop");
   const modalPlaceSelect = document.getElementById("modalPlaceSelect");
   const modalActivityText = document.getElementById("modalActivityText");
   const modalSave = document.getElementById("modalSave");
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isEditMode = false;
     if (saveBtn) saveBtn.disabled = true;
   } else {
-    isEditMode = false; // new planner → create first, then edit grid
+    isEditMode = false;
   }
 
   if (!plannerId) {
@@ -53,29 +53,33 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const openModal = (cellEl, day, slot) => {
-    if (!isEditMode || !plannerId) return;
+  if (!isEditMode || !plannerId) return;
 
-    currentCell = cellEl;
-    currentDay = day;
-    currentSlot = slot;
+  currentCell = cellEl;
+  currentDay = day;
+  currentSlot = slot;
 
-    let existingText = "";
-    if (cellEl.classList.contains("planner-cell")) {
-      const textSpan = cellEl.querySelector(".cell-text");
-      existingText = textSpan ? textSpan.textContent.trim() : "";
-    } else if (cellEl.classList.contains("daily-row")) {
-      const actEl = cellEl.querySelector(".daily-activity");
-      existingText = actEl ? actEl.textContent.trim() : "";
-      if (existingText === "—") existingText = "";
-    }
+  let existingText = "";
 
-    modalPlaceSelect.value = "";
-    modalActivityText.value = existingText;
+  if (cellEl.classList.contains("planner-cell")) {
+    const textSpan = cellEl.querySelector(".cell-text");
+    existingText = textSpan ? textSpan.textContent.trim() : "";
+  } else if (cellEl.classList.contains("daily-row")) {
+    const actEl = cellEl.querySelector(".daily-activity");
+    existingText = actEl ? actEl.textContent.trim() : "";
+    if (existingText === "—") existingText = "";
+  }
 
-    modal.classList.remove("hidden");
-  };
+  modalPlaceSelect.value = "";
+  modalActivityText.value = existingText;
+
+  modal.classList.remove("hidden");
+  modal.classList.add("show");
+};
+
 
   const closeModal = () => {
+    modal.classList.remove("show");
     modal.classList.add("hidden");
     currentCell = null;
     currentDay = null;

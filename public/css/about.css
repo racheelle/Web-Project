@@ -24,6 +24,7 @@ section {
   background: url("/images/about/hero-bg.jpg") center/cover no-repeat;
   height: 650px;                     
   color: white;
+  
 }
 
 /* LEFT SIDE */
@@ -78,7 +79,7 @@ section {
     border-radius: 50%;
     overflow: hidden;
     border: 15px solid #FFA03F;
-    background: #ff9f3f2b !important;
+     background-color: #ff9f3f;
 }
 
 .circle-image img {
@@ -86,8 +87,11 @@ section {
     height: 100%;
     object-fit: cover;
       display: block;
-      overlay: #ff9f3f2b; 
+     
+     opacity: 0.85;
 }
+
+
 
 /* Right side mission text */
 .mission-text h2 {
@@ -122,11 +126,12 @@ section {
 ========================================================= */
 .explore-easy-section {
     background: #FFA03F;
-    color: white;
+    color: rgb(8, 0, 0);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 80px 120px;
+    padding: 50px 220px;
+    margin-top: 0;
 }
 
 .explore-left {
@@ -135,7 +140,7 @@ section {
 
 .explore-left h2 {
     font-size: 36px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .btn-dark {
@@ -145,6 +150,7 @@ section {
     border-radius: 10px;
     display: inline-block;
     text-decoration: none;
+    margin-top: 20px;
 }
 
 .explore-phone img {
@@ -152,49 +158,98 @@ section {
 }
 
 
-/* =========================================================
-   WHY ZAHLE SECTION
-========================================================= */
+/* ========================= WHY ZAHLE SECTION ========================= */
+
 .why-zahle-section {
-    display: flex;
-    align-items: center;
-    padding: 120px 140px;
-    gap: 70px;
+    position: relative;
+    padding: 100px 0;
 }
 
-.why-left img {
+/* ORANGE ANGLED BANNER */
+.why-angle {
+    position: absolute;
+    left: 0;
+    top: 0px;
     width: 380px;
-    border-radius: 14px;
+    height: 400px;
+    background: linear-gradient(to bottom right, #FFA03F, #FFC57A);
+    clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 100%);
+    z-index: 1;
 }
 
+/* CARD */
+.why-card {
+    position: relative;
+    margin: 0 auto;
+    width: 90%;
+    background: white;
+    padding: 60px 70px;
+    border-radius: 22px;
+    display: flex;
+    gap: 60px;
+    box-shadow: 0px 20px 60px rgba(0,0,0,0.08);
+    z-index: 2;
+}
+
+/* LEFT IMAGE */
+.why-left img {
+    width: 360px;
+    border-radius: 18px;
+}
+
+/* TEXT AREA */
 .why-right h4 {
-    color: gray;
-    margin-bottom: 8px;
+    color: #ff9f3f;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .why-right h2 {
-    font-size: 42px;
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 25px;
 }
 
-.why-right span {
+.why-right h2 span {
     color: #FFA03F;
 }
 
+.why-right p {
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+/* STATS */
 .stats {
     display: flex;
-    gap: 40px;
-    margin: 25px 0;
+    gap: 70px;
+    margin-bottom: 35px;
 }
 
-.stats div h3 {
+.stats h3 {
+    font-size: 42px;
     color: #FFA03F;
-    font-size: 32px;
+    font-weight: 700;
 }
 
+.stats p {
+    font-size: 15px;
+    margin-top: 5px;
+    color: #555;
+}
+
+/* BUTTON */
 .btn-light {
     background: #FFA03F;
-    padding: 12px 26px;
+    padding: 14px 34px;
     color: white;
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    display: inline-block;
 }
+
+

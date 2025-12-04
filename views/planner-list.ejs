@@ -1,7 +1,10 @@
 <%- include("includes/head") %>
 <%- include("includes/navbar") %>
 
+
 <link rel="stylesheet" href="/css/planner.css">
+<link rel="stylesheet" href="/css/planner-modal.css">
+
 
 <section class="planner-list-page viewall-page">
 
@@ -36,9 +39,12 @@
             <td><%= p.created_at.toISOString ? p.created_at.toISOString().slice(0,10) : String(p.created_at).slice(0,10) %></td>
             <td class="planner-actions-col">
               <a href="/planner/<%= p.id %>" class="btn-small">Open</a>
-              <form action="/planner/<%= p.id %>/delete" method="POST" onsubmit="return confirm('Delete this planner?')" style="display:inline;">
-                <button class="btn-small btn-danger" type="submit">Delete</button>
-              </form>
+              <button class="btn-small btn-danger delete-planner-btn"
+        data-id="<%= p.id %>"
+        data-name="<%= p.name %>">
+  Delete
+</button>
+
             </td>
           </tr>
         <% }) %>
@@ -46,5 +52,26 @@
     </table>
   <% } %>
 </section>
+
+
+<!-- DELETE PLANNER MODAL -->
+<div id="deletePlannerModal" class="planner-modal">
+  <div class="planner-modal-content">
+    <h3>Delete Planner</h3>
+    <p id="plannerDeleteText">Are you sure you want to delete this planner?</p>
+
+   <div class="modal-buttons">
+  <form id="deletePlannerForm" method="POST">
+    <button class="yes">Yes, Delete</button>
+  </form>
+
+  <button id="cancelPlannerDelete" class="no">Cancel</button>
+</div>
+
+  </div>
+</div>
+
+<script src="/js/deletePlanner.js"></script>
+
 
 <%- include("includes/footer") %>

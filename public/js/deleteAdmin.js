@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!deleteButtons || !deleteModal || !deleteForm) return;
 
-  // OPEN MODAL
   deleteButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const id = btn.dataset.id;
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // CLOSE MODAL
   closeDelete.addEventListener("click", () => {
     deleteModal.classList.remove("show");
   });

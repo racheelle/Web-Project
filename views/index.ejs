@@ -198,65 +198,7 @@
 
 
 
-  <!-- REVIEWS SECTION -->
-  <section class="section reviews container">
-    <p class="section-eyebrow">Hear from Our Community</p>
-    <h2>Reviews from Visitors</h2>
 
-    <div class="reviews-grid">
-
-      <div class="review-image-card">
-        <img src="/images/review-hero.jpg" alt="Visitor in Zahle" />
-      </div>
-
-      <% if (reviews.length > 0) { %>
-        <% let r = reviews[0]; %>
-
-        <div class="review-content-card">
-          <h3><%= r.userName %></h3>
-          <p class="review-location">From <%= r.country %></p>
-          <p><%= r.comment %></p>
-
-          <div class="review-arrows">
-            <button>❮</button>
-            <button>❯</button>
-          </div>
-        </div>
-
-      <% } else { %>
-        <div class="review-content-card">
-          <p>No reviews yet.</p>
-        </div>
-      <% } %>
-
-    </div>
-  </section>
-
-
-
-  <!-- NEWSLETTER SECTION -->
-  <section class="section newsletter">
-    <div class="container newsletter-inner">
-      <div class="plane-decor left"></div>
-      <div class="plane-decor right"></div>
-
-      <h2>Subscribe To Get The Latest Zahle Updates</h2>
-      <p>
-        Never miss out on the latest events, festivals, and happenings in Zahle. Receive exclusive updates,
-        insider tips, and highlights straight to your inbox!
-      </p>
-
-      <form action="/newsletter" method="POST" class="newsletter-form-wide">
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Your Email"
-          required
-        />
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
-  </section>
 
 
 </main>

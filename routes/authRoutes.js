@@ -9,15 +9,12 @@ import {
 
 const router = express.Router();
 
-// Login
 router.get("/login", getLogin);
 router.post("/login", postLogin);
 
-// Signup
 router.get("/signup", getSignup);
 router.post("/signup", postSignup);
 
-// Logout
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {
     res.redirect("/");
