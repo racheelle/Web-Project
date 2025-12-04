@@ -206,3 +206,99 @@
   display: flex;
 }
 /* CONTACT MESSAGES TABLE END */
+
+
+/*admin header fix*/
+/* HEADER: title left, button right */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* Make Add Admin button match your rounded style */
+.add-admin-btn {
+  padding: 12px 26px;
+  background: #ffa03f;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 6px 14px rgba(255,160,63,0.35);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+
+
+/* ============================
+   EDIT ADMIN PAGE STYLING
+============================ */
+
+.admin-main h1 {
+  margin-bottom: 25px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Center the form content area */
+.admin-form {
+  background: #ffffff;
+  padding: 30px 35px;
+  border-radius: 12px;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Grid for form fields */
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Form labels */
+.form-grid label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Input styling */
+.form-grid input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.form-grid input:focus {
+  border-color: #ffa03f;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255,160,63,0.2);
+}
+
+/* Save button */
+.admin-form .btn-primary {
+  margin-top: 20px;
+  padding: 12px 26px;
+  background: #ffa03f;
+  color: white;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(255,160,63,0.35);
+  transition: 0.2s ease;
+}
+
+.admin-form .btn-primary:hover {
+  transform: translateY(-2px);
+}
+/* ============================
+   END OF EDIT ADMIN PAGE STYLING
