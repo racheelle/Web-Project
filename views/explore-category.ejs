@@ -1,0 +1,64 @@
+<%- include("includes/head") %>
+<%- include("includes/navbar") %>
+
+<link rel="stylesheet" href="/css/explore.css" />
+
+<section class="explore-category-page">
+  <div class="explore-hero small">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Explore by Category</p>
+      <h1 class="hero-title"><%= category.name %></h1>
+    </div>
+  </div>
+
+  <div class="category-page-content">
+    <% if (places.length === 0) { %>
+      <p class="empty-text">No places have been added yet for this category.</p>
+    <% } else { %>
+      <div class="places-grid">
+        <% places.forEach(place => { %>
+          <a href="/places/<%= place.id %>" class="place-card place-card-grid">
+            <div class="place-image-wrapper">
+              <img src="<%= place.main_image %>" alt="<%= place.name %>" class="place-image" />
+              <% if (place.rating && place.rating > 0) { %>
+                <div class="place-rating-badge">
+                  ⭐ <%= place.rating.toFixed(1) %>
+                </div>
+              <% } %>
+            </div>
+            <div class="place-content">
+              <h3 class="place-title"><%= place.name %></h3>
+              <% if (place.description) { %>
+                <p class="place-description">
+                  <%= place.description.length > 140 ? place.description.substring(0, 140) + "..." : place.description %>
+                </p>
+              <% } %>
+              <div class="place-meta">
+                <span class="place-price">
+                  <% const hasPrice = (place.price_min && place.price_min > 0) || (place.price_max && place.price_max > 0); %>
+                  <% if (!hasPrice) { %>
+                    Free
+                  <% } else if (place.price_max && place.price_max > place.price_min) { %>
+                    USD <%= place.price_min %>–<%= place.price_max %> / person
+                  <% } else { %>
+                    USD <%= place.price_min %>+ / person
+                  <% } %>
+                </span>
+                <% if (place.days_available) { %>
+                  <span class="place-days"><%= place.days_available %></span>
+                <% } %>
+              </div>
+              <div class="place-footer">
+                <% if (place.location) { %>
+                  <span class="place-location">📍 <%= place.location %></span>
+                <% } %>
+              </div>
+            </div>
+          </a>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include("includes/footer") %>

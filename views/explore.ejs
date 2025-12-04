@@ -1,51 +1,112 @@
 <%- include("includes/head") %>
 <%- include("includes/navbar") %>
 
-<link rel="stylesheet" href="/css/explore.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="/css/explore.css" />
 
-<section class="explore-container">
+<section class="explore-page">
 
-  <!-- HEADER -->
-  <div class="explore-header">
-    <h1>Explore <span>Zahle</span></h1>
-    <p>Discover the best spots the city has to offer</p>
+  <!-- HERO -->
+  <div class="explore-hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Explore by Category</p>
+      <h1 class="hero-title">
+        <span class="hero-line hero-line-orange">Start exploring</span><br />
+        <span class="hero-line hero-line-blue">by category</span>
+      </h1>
+      <p class="hero-subtitle">
+        Discover Zahle’s favorite restaurants, local shops, landmarks, hotels, and events – curated for locals and visitors.
+      </p>
+    </div>
   </div>
 
-  <!-- CATEGORIES -->
-  <div class="explore-categories">
+  <!-- CATEGORY STRIP -->
+  <div class="category-strip">
     <% categories.forEach(cat => { %>
-      <div class="category-card">
-        <img src="<%= cat.icon %>" alt="<%= cat.name %>">
-        <p><%= cat.name %></p>
-      </div>
+      <a href="#category-<%= cat.id %>" class="category-pill">
+        <% if (cat.icon) { %>
+          <img src="<%= cat.icon %>" alt="<%= cat.name %> icon" class="category-icon" />
+        <% } %>
+        <span class="category-name"><%= cat.name %></span>
+      </a>
     <% }) %>
   </div>
 
-  <!-- PLACES LIST -->
-  <div class="explore-places">
-    <% places.forEach(place => { %>
-
-      <a href="/place/<%= place.id %>" class="place-card">
-
-        <img class="place-img" src="/uploads/<%= place.main_image %>" alt="<%= place.name %>">
-
-        <div class="place-info">
-          <h3><%= place.name %></h3>
-          <p class="place-category"><%= place.category %></p>
-
-          <div class="place-extra">
-            <span class="rating">⭐ <%= place.rating %></span>
-            <span class="price">$<%= place.price_min %> - $<%= place.price_max %></span>
+  <!-- CAROUSEL SECTIONS -->
+  <div class="explore-sections">
+    <% categories.forEach(cat => { 
+         const places = placesByCategory[cat.id] || [];
+    %>
+      <section id="category-<%= cat.id %>" class="category-section">
+        <div class="category-header">
+          <div>
+            <p class="category-label">Explore by Category</p>
+            <h2 class="category-title"><%= cat.name %></h2>
           </div>
-
-          <p class="location">📍 <%= place.location %></p>
         </div>
 
-      </a>   <!-- ✔ this closes correctly -->
+        <% if (places.length === 0) { %>
+          <p class="empty-text">No places added yet for this category.</p>
+        <% } else { %>
+          <div class="swiper explore-swiper" data-category-id="<%= cat.id %>">
+            <div class="swiper-wrapper">
+              <% places.forEach(place => { %>
+                <div class="swiper-slide">
+                  <a href="/place/<%= place.id %>" class="place-card">
+                    <div class="place-image-wrapper">
+                      <img src="<%= place.main_image %>" alt="<%= place.name %>" class="place-image" />
+                      <% if (place.rating && place.rating > 0) { %>
+                        <div class="place-rating-badge">
+                          ⭐ <%= place.rating.toFixed(1) %>
+                        </div>
+                      <% } %>
+                    </div>
+                    <div class="place-content">
+                      <h3 class="place-title"><%= place.name %></h3>
+                      <div class="place-meta">
+                        <span class="place-price">
+                          <% const hasPrice = (place.price_min && place.price_min > 0) || (place.price_max && place.price_max > 0); %>
+                          <% if (!hasPrice) { %>
+                            Free
+                          <% } else if (place.price_max && place.price_max > place.price_min) { %>
+                            USD <%= place.price_min %>–<%= place.price_max %> / person
+                          <% } else { %>
+                            USD <%= place.price_min %>+ / person
+                          <% } %>
+                        </span>
+                        <% if (place.days_available) { %>
+                          <span class="place-days"><%= place.days_available %></span>
+                        <% } %>
+                      </div>
+                      <div class="place-footer">
+                        <% if (place.location) { %>
+                          <span class="place-location">📍 <%= place.location %></span>
+                        <% } %>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              <% }) %>
+            </div>
 
+            <!-- Swiper controls for this category -->
+            <div class="swiper-button-prev swiper-button-prev-<%= cat.id %>"></div>
+            <div class="swiper-button-next swiper-button-next-<%= cat.id %>"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+          <div class="more-button-wrapper">
+            <a href="/explore/category/<%= cat.id %>" class="more-button">
+                More
+            </a>
+          </div>
+        <% } %>
+      </section>
     <% }) %>
   </div>
 
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="/js/explore.js"></script>
 
 <%- include("includes/footer") %>
