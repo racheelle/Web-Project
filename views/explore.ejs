@@ -6,31 +6,33 @@
 
 <section class="explore-page">
 
-  <!-- HERO -->
-  <div class="explore-hero">
-    <div class="hero-inner">
-      <p class="hero-eyebrow">Explore by Category</p>
-      <h1 class="hero-title">
-        <span class="hero-line hero-line-orange">Start exploring</span><br />
-        <span class="hero-line hero-line-blue">by category</span>
-      </h1>
-      <p class="hero-subtitle">
-        Discover Zahle’s favorite restaurants, local shops, landmarks, hotels, and events – curated for locals and visitors.
-      </p>
-    </div>
-  </div>
+  <!-- 🔶 WRAPPER FOR HERO + CATEGORY STRIP (background goes here) -->
+  <div class="explore-top-wrapper">
 
-  <!-- CATEGORY STRIP -->
-  <div class="category-strip">
-    <% categories.forEach(cat => { %>
-      <a href="#category-<%= cat.id %>" class="category-pill">
-        <% if (cat.icon) { %>
-          <img src="<%= cat.icon %>" alt="<%= cat.name %> icon" class="category-icon" />
-        <% } %>
-        <span class="category-name"><%= cat.name %></span>
-      </a>
-    <% }) %>
+    <!-- HERO -->
+    <section class="explore-hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          <span class="hero-line hero-line-orange">Start exploring</span><br />
+          <span class="hero-line hero-line-blue">by category</span>
+        </h1>
+      </div>
+    </section>
+
+    <!-- CATEGORY STRIP -->
+    <div class="category-strip">
+      <% categories.forEach(cat => { %>
+        <a href="#category-<%= cat.id %>" class="category-pill">
+          <% if (cat.icon) { %>
+            <img src="<%= cat.icon %>" alt="<%= cat.name %> icon" class="category-icon" />
+          <% } %>
+          <span class="category-name"><%= cat.name %></span>
+        </a>
+      <% }) %>
+    </div>
+
   </div>
+  <!-- END WRAPPER -->
 
   <!-- CAROUSEL SECTIONS -->
   <div class="explore-sections">
@@ -38,6 +40,7 @@
          const places = placesByCategory[cat.id] || [];
     %>
       <section id="category-<%= cat.id %>" class="category-section">
+
         <div class="category-header">
           <div>
             <p class="category-label">Explore by Category</p>
@@ -48,11 +51,14 @@
         <% if (places.length === 0) { %>
           <p class="empty-text">No places added yet for this category.</p>
         <% } else { %>
+
           <div class="swiper explore-swiper" data-category-id="<%= cat.id %>">
             <div class="swiper-wrapper">
               <% places.forEach(place => { %>
+
                 <div class="swiper-slide">
                   <a href="/place/<%= place.id %>" class="place-card">
+
                     <div class="place-image-wrapper">
                       <img src="<%= place.main_image %>" alt="<%= place.name %>" class="place-image" />
                       <% if (place.rating && place.rating > 0) { %>
@@ -61,8 +67,10 @@
                         </div>
                       <% } %>
                     </div>
+
                     <div class="place-content">
                       <h3 class="place-title"><%= place.name %></h3>
+
                       <div class="place-meta">
                         <span class="place-price">
                           <% const hasPrice = (place.price_min && place.price_min > 0) || (place.price_max && place.price_max > 0); %>
@@ -74,31 +82,38 @@
                             USD <%= place.price_min %>+ / person
                           <% } %>
                         </span>
+
                         <% if (place.days_available) { %>
                           <span class="place-days"><%= place.days_available %></span>
                         <% } %>
                       </div>
+
                       <div class="place-footer">
                         <% if (place.location) { %>
                           <span class="place-location">📍 <%= place.location %></span>
                         <% } %>
                       </div>
                     </div>
+
                   </a>
                 </div>
+
               <% }) %>
             </div>
 
-            <!-- Swiper controls for this category -->
+            <!-- Swiper controls -->
             <div class="swiper-button-prev swiper-button-prev-<%= cat.id %>"></div>
             <div class="swiper-button-next swiper-button-next-<%= cat.id %>"></div>
             <div class="swiper-pagination"></div>
           </div>
+
+          <!-- CENTERED ‘MORE’ BUTTON -->
           <div class="more-button-wrapper">
             <a href="/explore/category/<%= cat.id %>" class="more-button">
-                More
+              More
             </a>
           </div>
+
         <% } %>
       </section>
     <% }) %>

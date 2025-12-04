@@ -17,7 +17,7 @@
     <% } else { %>
       <div class="places-grid">
         <% places.forEach(place => { %>
-          <a href="/places/<%= place.id %>" class="place-card place-card-grid">
+          <a href="/place/<%= place.id %>" class="place-card place-card-grid">
             <div class="place-image-wrapper">
               <img src="<%= place.main_image %>" alt="<%= place.name %>" class="place-image" />
               <% if (place.rating && place.rating > 0) { %>
