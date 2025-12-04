@@ -1,164 +1,200 @@
-/* GLOBAL */
+/* =========================================================
+   GLOBAL LAYOUT RESETS
+========================================================= */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+section {
+    width: 100%;
+    position: relative;
+}
+
+
+/* ============================
+   HERO SECTION
+============================ */
 .about-hero {
+  padding: 140px 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 120px 100px;
-  gap: 60px;
+  background: url("/images/about/hero-bg.jpg") center/cover no-repeat;
+  height: 650px;                     
+  color: white;
 }
 
-.about-hero h1 {
-  font-size: 56px;
+/* LEFT SIDE */
+.about-left {
+  width: 40%;
+}
+
+.about-card {
+  background: #ffa03f;
+  padding: 40px 35px;
+  border-radius: 30px;
+  max-width: 360px;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #000;
+  box-shadow: 0px 10px 40px rgba(0,0,0,0.22);
+  margin-top: 100px;
+}
+
+/* RIGHT SIDE */
+.about-right {
+  width: 55%;
+  text-align: right;
+}
+
+.about-right h1 {
+  font-size: 54px;
+  line-height: 1.15;
   font-weight: 700;
-  color: #1b1c1e;
 }
 
-.about-hero h1 span {
-  color: #FFA03F;
+.about-right span {
+  color: #ffa03f;
+  border-bottom: 5px solid #ffa03f;
 }
 
-.about-hero p {
-  margin-top: 20px;
-  font-size: 18px;
-  line-height: 1.7;
+/* =========================================================
+   MISSION SECTION WITH CIRCLE IMAGE
+========================================================= */
+.mission-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 50px 100px;
+    margin-top: -100px;
+    gap: 60px;
 }
 
-.hero-img img {
-  width: 480px;
-  border-radius: 20px;
+/* Orange big half-circle shape */
+.circle-image {
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 15px solid #FFA03F;
+    background: #ff9f3f2b !important;
 }
 
-
-
-/* MISSION */
-.mission-section {
-  padding: 100px 100px;
-  background: #fff;
+.circle-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+      display: block;
+      overlay: #ff9f3f2b; 
 }
 
-.mission-section h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
+/* Right side mission text */
+.mission-text h2 {
+    color: #999;
+    font-size: 18px;
+    margin-bottom: 5px;
 }
 
-.mission-list {
-  display: flex;
-  gap: 40px;
+.mission-text h1 {
+    font-size: 40px;
+    margin-bottom: 25px;
 }
 
-.mission-list li {
-  flex: 1;
-  background: #fafafa;
-  padding: 25px;
-  border-radius: 15px;
+.mission-text ul {
+    list-style: none;
+    padding: 0;
 }
 
-.mission-list h3 {
-  color: #FFA03F;
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
+.mission-text li {
+    margin-bottom: 22px;
 }
 
-.mission-list p {
-  font-size: 16px;
-}
-
-
-
-/* EXPLORE EASY */
-.explore-easy {
-  display: flex;
-  align-items: center;
-  padding: 120px 100px;
-  gap: 60px;
-  background: #FFA03F;
-  color: #fff;
-}
-
-.explore-easy h2 {
-  font-size: 42px;
-}
-
-.explore-easy p {
-  margin: 20px 0;
-  font-size: 18px;
-}
-
-.btn-explore {
-  background: #1b1c1e;
-  padding: 12px 25px;
-  border-radius: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.explore-img img {
-  width: 350px;
+.mission-text h3 {
+    color: #FFA03F;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 
-
-/* WHY ZAHLE */
-.why-zahle {
-  display: flex;
-  align-items: center;
-  padding: 140px 100px;
-  gap: 70px;
+/* =========================================================
+   EXPLORE EASY (ORANGE) SECTION
+========================================================= */
+.explore-easy-section {
+    background: #FFA03F;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 120px;
 }
 
-.why-text h2 {
-  font-size: 48px;
+.explore-left {
+    max-width: 450px;
 }
 
-.why-text span {
-  color: #FFA03F;
+.explore-left h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.btn-dark {
+    background: black;
+    color: white;
+    padding: 12px 26px;
+    border-radius: 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.explore-phone img {
+    width: 260px;
+}
+
+
+/* =========================================================
+   WHY ZAHLE SECTION
+========================================================= */
+.why-zahle-section {
+    display: flex;
+    align-items: center;
+    padding: 120px 140px;
+    gap: 70px;
+}
+
+.why-left img {
+    width: 380px;
+    border-radius: 14px;
+}
+
+.why-right h4 {
+    color: gray;
+    margin-bottom: 8px;
+}
+
+.why-right h2 {
+    font-size: 42px;
+}
+
+.why-right span {
+    color: #FFA03F;
 }
 
 .stats {
-  display: flex;
-  gap: 50px;
-  margin: 30px 0;
+    display: flex;
+    gap: 40px;
+    margin: 25px 0;
 }
 
-.stat h3 {
-  font-size: 36px;
-  color: #FFA03F;
+.stats div h3 {
+    color: #FFA03F;
+    font-size: 32px;
 }
 
-.stat p {
-  font-size: 15px;
-}
-
-.btn-explore-light {
-  background: #FFA03F;
-  padding: 12px 25px;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-
-
-/* RESPONSIVE */
-@media (max-width: 1000px) {
-  .about-hero,
-  .explore-easy,
-  .why-zahle {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-img img,
-  .explore-img img,
-  .why-img img {
-    width: 100%;
-    max-width: 450px;
-  }
-
-  .mission-list {
-    flex-direction: column;
-  }
+.btn-light {
+    background: #FFA03F;
+    padding: 12px 26px;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
 }

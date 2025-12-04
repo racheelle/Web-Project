@@ -298,20 +298,21 @@ main {
 .highlight-item {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   align-items: flex-start;
 }
 
-.icon-round {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  background: #fff7ed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f97316;
+
+
+
+
+.icon-round img {
+  width: 100px;     /* icon fills more space */
+  height:100 px;
+  object-fit: contain;
+  display: block;
 }
+
 
 /* ---------- EXPLORE BY CATEGORY CARDS ---------- */
 
@@ -442,6 +443,7 @@ main {
 .about-stats {
   display: flex;
   gap: 2.5rem;
+  padding-bottom: 30px;
 }
 
 .about-stats h3 {

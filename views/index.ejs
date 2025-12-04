@@ -47,33 +47,55 @@
   </section>
 
 
-  <!-- HIGHLIGHTS SECTION -->
-  <section class="section highlights container">
+ <!-- HIGHLIGHTS SECTION -->
+<section class="section highlights container">
 
-    <div class="highlights-left">
-      <div class="image-card">
-        <img src="/images/zahle-car.jpg" alt="Zahle street" />
-        <button class="play-btn">▶</button>
-        <div class="plan-tag">Plan your Own Tour</div>
+  <div class="highlights-left">
+    <div class="image-card">
+      <img src="/images/zahle-car.jpg" alt="Zahle street" />
+      <div class="plan-tag">Plan your Own Tour</div>
+    </div>
+  </div>
+
+  <div class="highlights-right">
+    <p class="section-eyebrow">Discover the Charm of Zahle</p>
+    <h2>Highlights of the City</h2>
+
+    <!-- Highlight 1 -->
+    <div class="highlight-item">
+      <div class="icon-round">
+        <img src="/images/icons/scenic.png" alt="Scenic Routes">
+      </div>
+      <div>
+        <h3>Scenic Routes</h3>
+        <p>Explore the beautiful mountains, rivers, and hidden gems around Zahle.</p>
       </div>
     </div>
 
-    <div class="highlights-right">
-      <p class="section-eyebrow">Discover the Charm of Zahle</p>
-      <h2>Highlights of the City</h2>
-
-      <% highlights.forEach(h => { %>
-        <div class="highlight-item">
-          <div class="icon-round"><%= h.icon %></div>
-          <div>
-            <h3><%= h.title %></h3>
-            <p><%= h.description %></p>
-          </div>
-        </div>
-      <% }) %>
-
+    <!-- Highlight 2 -->
+    <div class="highlight-item">
+      <div class="icon-round">
+        <img src="/images/icons/taste.png" alt="Authentic Taste">
+      </div>
+      <div>
+        <h3>Authentic Taste</h3>
+        <p>Experience Zahle’s rich culinary culture and taste traditional Lebanese flavors.</p>
+      </div>
     </div>
-  </section>
+
+    <!-- Highlight 3 -->
+    <div class="highlight-item">
+      <div class="icon-round">
+        <img src="/images/icons/history.png" alt="Rich History">
+      </div>
+      <div>
+        <h3>Rich History</h3>
+        <p>Discover centuries of heritage and stories that bring the city to life.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 
@@ -141,7 +163,6 @@
           and step into a heritage shaped by centuries of tradition. Your journey starts here.
         </p>
 
-        <button class="btn-primary">Start Exploring</button>
 
         <div class="about-stats">
           <div>
@@ -157,7 +178,9 @@
             <p>Must-Visit Spots</p>
           </div>
         </div>
+        <a href="/explore" class="btn-primary">Start Exploring</a>
       </div>
+      
 
       <div class="about-image-wrapper">
         <div class="about-shape"></div>
