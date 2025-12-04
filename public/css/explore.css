@@ -7,13 +7,25 @@
   padding: 40px 8vw 80px;
 }
 
-/* HERO */
+/* ========== TOP WRAPPER (HERO + CATEGORY NAV BACKGROUND) ========== */
+
+.explore-top-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 60px 0 80px;
+  background-image: url('/images/explore.jpg'); /* 🔥 MAIN BACKGROUND */
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  border-radius: 22px;
+}
+
+/* ========== HERO SECTION ========== */
 
 .explore-hero {
-  position: relative;
   text-align: center;
   margin-bottom: 40px;
-  padding-top: 40px;
+  padding-top: 20px; /* Keep spacing but let wrapper control background */
 }
 
 .explore-hero.small {
@@ -29,7 +41,7 @@
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #888;
+  color: #444;
   margin-bottom: 10px;
 }
 
@@ -49,35 +61,31 @@
 
 .hero-line-orange {
   color: #ff9b2f;
+  border-bottom-color: #ff9b2f;
 }
 
-.hero-line-black {
+.hero-line-blue {
   color: #111111;
   border-bottom-color: #ff9b2f;
 }
 
 .hero-subtitle {
   font-size: 15px;
-  color: #555;
+  color: #333;
+  max-width: 650px;
+  margin: 0 auto;
 }
 
-/* Optional illustration behind hero (explore skyline) */
+/* Remove OLD skyline background (no longer needed) */
 .explore-page::before,
 .explore-category-page::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 220px;
-  background: url("/images/explore.png") center bottom / cover no-repeat;
-  opacity: 0.25;
-  pointer-events: none;
-  z-index: -1;
+  content: none !important;
 }
 
 /* ========== CATEGORY STRIP ========== */
 
 .category-strip {
-  margin: 35px auto 45px;
+  margin: 220px auto 20px;
   max-width: 1000px;
   background: #ff9b2f;
   border-radius: 30px;
@@ -148,17 +156,6 @@
 .category-title {
   font-size: 26px;
   font-weight: 700;
-}
-
-.category-more {
-  font-size: 14px;
-  font-weight: 500;
-  color: #ff9b2f;
-  text-decoration: none;
-}
-
-.category-more:hover {
-  text-decoration: underline;
 }
 
 .empty-text {
@@ -283,6 +280,8 @@
   width: 280px;
 }
 
+/* MORE BUTTON */
+
 .more-button-wrapper {
   display: flex;
   justify-content: center;
@@ -309,6 +308,7 @@
 }
 
 
+/* Swiper arrows */
 .swiper-button-prev,
 .swiper-button-next {
   width: 32px;
