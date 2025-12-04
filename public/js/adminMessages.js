@@ -1,7 +1,6 @@
-// public/js/adminMessages.js
-// @ts-nocheck   // <- tells VS Code to relax for this file
-console.log("ADMIN JS LOADED!");
+// @ts-nocheck
 
+console.log("ADMIN JS LOADED!");
 
 document.addEventListener("DOMContentLoaded", () => {
   const viewButtons = document.querySelectorAll(".view-btn");
@@ -19,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const deleteForm = document.getElementById("deleteForm");
 
-  // ---------- VIEW MESSAGE MODAL ----------
+
   if (messageModal && closeMessage && modalName && modalEmail && modalMessage) {
     viewButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -40,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---------- DELETE MESSAGE MODAL ----------
   if (deleteModal && closeDelete && deleteForm) {
     deleteButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
